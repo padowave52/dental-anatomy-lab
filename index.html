@@ -1,0 +1,206 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Dental Anatomy Lab V20 | 영구치열 3D 학습</title><style>
+@font-face{font-family:'Paperlogy';src:url('./fonts/Paperlogy-4Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Paperlogy';src:url('./fonts/Paperlogy-6SemiBold.ttf') format('truetype');font-weight:600;font-style:normal;font-display:swap}
+
+:root{font-family:'Paperlogy','Malgun Gothic',sans-serif;color:#152940;background:#eef3f8}*{box-sizing:border-box}body{margin:0}.top{height:68px;background:#fff;border-bottom:1px solid #dae5ec;padding:0 28px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:850;font-size:19px;letter-spacing:-.7px}.brand em{font-style:normal;color:#1689b6}.tiny{color:#718397;font-size:12px}.layout{display:grid;grid-template-columns:65fr 35fr;min-height:calc(100vh - 68px)}.viewer{position:relative;min-height:580px;background:radial-gradient(ellipse at 47% 37%,#d8e3ed 0%,#bdcddc 62%,#a6bacb 100%);overflow:hidden}canvas{display:block;position:absolute;inset:0;width:100%;height:100%}.vtop{position:absolute;top:20px;left:24px;pointer-events:none}.eyebrow{font-size:12px;letter-spacing:1.3px;font-weight:800;color:#1486ad}.vtitle{font-size:23px;font-weight:850;letter-spacing:-.7px;margin:6px 0}.hint{font-size:12px;color:#597184;line-height:1.7}.toolbar{position:absolute;bottom:18px;left:18px;display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid #cfdfeb;background:#fff;color:#2b4f64;border-radius:11px;padding:10px 13px;font-weight:700;cursor:pointer;box-shadow:0 2px 5px #1534510a}.btn:hover{background:#edf8ff}.btn.primary{background:#1479a5;color:#fff;border-color:#1479a5}.side{background:#fff;border-left:1px solid #dce7ee;padding:22px 20px;overflow:auto}.pill{display:inline-block;background:#e4f4fb;color:#137fa6;border-radius:30px;font-size:11px;font-weight:750;padding:7px 11px}.name{font-size:22px;letter-spacing:-.6px;font-weight:850;margin:12px 0 2px;line-height:1.25}.english{color:#7b8ca0;font-size:13px;line-height:1.45}.section{border-top:1px solid #e6edf3;margin-top:18px;padding-top:16px}.section h3{font-size:14px;margin:0 0 10px}.description{font-size:13px;color:#50667a;line-height:1.7}.metrics{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px}.metric{background:#f2f7fa;border-radius:10px;padding:10px}.metric small{display:block;color:#7790a0;font-size:11px;margin-bottom:6px}.metric strong{font-size:13px}.tabs{display:flex;gap:7px;flex-wrap:wrap}.tab{padding:8px 11px;border-radius:10px;background:#f0f5f9;border:1px solid #e1eaf0;font-size:12px;cursor:pointer;color:#38556b}.tab.active{background:#daeffb;border-color:#83bfdb;color:#09648d;font-weight:800}.notice{margin-top:14px;background:#fff8e8;color:#8b622a;border:1px solid #f1dfb8;padding:10px;border-radius:10px;font-size:11px;line-height:1.55}.status{position:absolute;bottom:79px;left:24px;color:#577080;font-size:12px}.foot{font-size:10px;color:#80909d;margin-top:16px;line-height:1.55}@media(max-width:850px){.layout{display:block}.viewer{min-height:460px;height:60vh}.side{border-left:none}.top{padding:0 15px}.vtitle{font-size:18px}.vtop{left:15px;top:13px}.status{bottom:75px;left:17px}}
+ .version{font-size:11px;font-weight:800;color:#0e759f;background:#e2f4fc;border-radius:6px;padding:4px 7px;margin-left:8px}
+body,button{font-family:'Paperlogy','Malgun Gothic',sans-serif;font-weight:400}
+.brand,.vtitle,.name,.section h3{font-family:'Paperlogy','Malgun Gothic',sans-serif;font-weight:600}
+.eyebrow,.pill,.btn,.tab,.tab.active,.metric strong{font-weight:400}
+
+/* V11: increased readability, preserve Paperlogy semibold headings / regular body */
+.brand{font-size:22px}.tiny{font-size:14px}.version{font-size:12px}
+.eyebrow{font-size:13px}.vtitle{font-size:28px}.hint{font-size:14px}
+.btn{font-size:14px;padding:12px 15px}.status{font-size:14px}
+.pill{font-size:13px}.name{font-size:27px}.english{font-size:15px}
+.section h3{font-size:17px}.description{font-size:16px;line-height:1.75}
+.metric small{font-size:13px}.metric strong{font-size:15px}
+.tab{font-size:14px;padding:9px 12px}.notice{font-size:13px}.foot{font-size:12px}
+@media(max-width:850px){.vtitle{font-size:23px}.name{font-size:24px}}
+.feature-list{display:grid;gap:9px}.feature-item{border-left:3px solid #a5d0e5;background:#f4f8fb;border-radius:5px;padding:10px 12px;font-size:14px;line-height:1.65;color:#354e62}.source{font-size:12px;color:#728599;margin-top:12px;line-height:1.5}.fdi-display{display:flex;gap:9px;margin-top:12px}.fdi-card{flex:1;background:#eaf3f8;border-radius:10px;padding:11px}.fdi-card small{display:block;font-size:12px;color:#5b7990;margin-bottom:5px}.fdi-card strong{font-size:22px;color:#116f9d}.fdi-help{font-size:12px;color:#64798d;line-height:1.5;margin-top:8px}
+.editor{margin-top:18px;border-top:1px solid #dfe7ef;padding-top:14px}.edit-toggle{width:100%;padding:12px;text-align:left;border:1px solid #c8ddeb;background:#eaf5fd;color:#155e83;border-radius:10px;font-size:15px;cursor:pointer;font-family:inherit}.edit-panel{display:none;margin-top:12px}.edit-panel.open{display:block}.edit-label{display:block;margin:10px 0 5px;font-size:13px;color:#415669}.edit-input{width:100%;border:1px solid #cfdce7;border-radius:8px;padding:9px 10px;font-size:14px;font-family:inherit;background:#fff;color:#172c3b}.edit-panel textarea{resize:vertical;min-height:76px}.edit-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.edit-note{font-size:12px;color:#52677b;line-height:1.7;margin:9px 0}.edit-key{overflow-wrap:anywhere;font-size:12px;color:#667d8b;margin-top:7px}.edit-panel button{font:inherit}
+
+.surface-annotation{position:absolute;inset:0;pointer-events:none;z-index:3;display:none}.surface-annotation.active{display:block}
+.surface-annotation svg{width:100%;height:100%;overflow:visible;position:absolute;inset:0}
+.surface-annotation line{stroke:#28455d;stroke-width:1.5;stroke-dasharray:3 3}
+.surface-pin{position:absolute;transform:translate(-50%,-50%);border:1px solid #c2d5e1;background:rgba(255,255,255,.95);box-shadow:0 2px 8px #1829381c;border-radius:9px;padding:7px 10px;font-size:13px;color:#244259;font-weight:600;white-space:nowrap;pointer-events:auto;cursor:pointer}
+.surface-pin:hover{border-color:#167ea7}.surface-pin small{display:block;font-size:10px;color:#6d8295;font-weight:400;margin-top:2px}
+.surface-guide{position:absolute;top:104px;left:24px;font-size:12px;color:#244a62;background:#f0f8fbe6;border-radius:8px;padding:8px 10px;display:none;z-index:3}
+.surface-guide.active{display:block}
+@media(max-width:800px){.surface-pin{font-size:11px;padding:5px}}
+</style><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script></head><body><header class="top"><div class="brand">🦷 Dental <em>Anatomy</em> Lab <span class="version">V23 · 23 + 36 SURFACES 65:35</span></div><div class="tiny">영구치열 · 인터랙티브 3D 학습</div></header><main class="layout"><section class="viewer" id="viewer"><div class="vtop"><div class="eyebrow">INTERACTIVE DENTAL ATLAS</div><div class="vtitle" id="sceneTitle">전체 영구치열</div><div class="hint">드래그: 자유 회전 · 휠: 확대/축소 · 치아 클릭: 상세보기</div></div><div class="surface-annotation" id="surfaceAnnotation"><svg id="surfaceLines"></svg><div id="surfacePins"></div></div><div class="surface-guide" id="surfaceGuide">23번 · 자유롭게 360° 회전하고, 면 이름을 클릭하면 설명이 나와요.</div><div class="status" id="status">V23 모델 불러오는 중…</div><div class="toolbar"><button class="btn primary" id="allBtn">↶ 전체 치열 보기</button><button class="btn" id="focusBtn">◎ 선택 치아만 보기</button><button class="btn" id="resetBtn">⟲ 보기 초기화</button><button class="btn" id="preview23Btn" style="background:#e0f4e9;border-color:#a6d0b5;color:#166344">🦷 23번 컬러 모델 테스트</button><button class="btn" id="preview36Btn" style="background:#f0e8ff;border-color:#c8b7e1;color:#544078">🦷 36번 컬러 모델 테스트</button></div></section><aside class="side"><span class="pill" id="toothLabel">3D TOOTH EXPLORER</span><div class="name" id="toothName">치아를 선택해 보세요</div><div class="english" id="toothEnglish">Select a tooth to explore</div><div class="fdi-display"><div class="fdi-card"><small>FDI 치아 번호</small><strong id="fdiNumber">—</strong></div><div class="fdi-card"><small>1~32 번호</small><strong id="universalNumber">—</strong></div></div><div class="fdi-help">FDI: 상악 우측 1번대 · 상악 좌측 2번대 · 하악 좌측 3번대 · 하악 우측 4번대</div><div class="section"><h3>치아 설명</h3><div class="description" id="description">왼쪽의 실제 3D 치열 모델에서 원하는 치아를 클릭하세요. 선택한 치아를 강조하고 개별 확대해서 관찰할 수 있습니다.</div><div class="metrics"><div class="metric"><small>위치</small><strong id="jaw">—</strong></div></div></div><div class="section" id="deepSection" style="display:none"><h3>형태학적 핵심 특징</h3><div id="deepFeatures" class="feature-list"></div><div class="source" id="sourceRef"></div></div><div class="section"><h3>치아 표면 학습</h3><div class="tabs" id="tabs"></div><div class="description" id="surfaceInfo" style="margin-top:12px">치아를 선택하면 표면 용어를 학습할 수 있습니다.</div></div><div class="editor"><button class="edit-toggle" id="editToggle" type="button">✎ 치아 번호·설명 직접 편집하기</button><div class="edit-panel" id="editPanel"><div class="edit-note">3D에서 치아를 선택하고 정보를 변경하세요. 저장은 현재 브라우저에 적용됩니다. 다른 PC로 옮기려면 JSON을 내보내세요.</div><div class="edit-key" id="editObjectName">치아를 선택하면 원본 객체명이 표시됩니다.</div><label class="edit-label" for="editFDI">FDI 번호 (11~48)</label><select class="edit-input" id="editFDI"><option value="">미지정</option></select><label class="edit-label" for="editTitle">치아 이름 (선택)</label><input class="edit-input" id="editTitle" placeholder="예: 상악 좌측 제1대구치"><label class="edit-label" for="editEnglish">영어 이름 (선택)</label><input class="edit-input" id="editEnglish" placeholder="Maxillary first molar"><label class="edit-label" for="editSummary">치아 설명 (선택)</label><textarea class="edit-input" id="editSummary" rows="4" placeholder="치아 형태 및 기능"></textarea><label class="edit-label" for="editFeatures">핵심 특징 (한 줄에 하나)</label><textarea class="edit-input" id="editFeatures" rows="4"></textarea><div class="edit-actions"><button class="btn primary" type="button" id="editSave">이 치아 저장</button><button class="btn" type="button" id="editRemove">수정 삭제</button></div><div class="edit-actions"><button class="btn" type="button" id="editExport">JSON 백업</button><button class="btn" type="button" id="editImport">JSON 불러오기</button><input type="file" id="editImportFile" accept=".json,application/json" hidden></div><div class="edit-note" id="editFeedback">같은 브라우저에서는 저장한 수정 사항이 유지됩니다.</div></div></div><div class="foot">※ 하나의 그룹에 포함되어 있던 상악 치아를 메시별로 선택하도록 수정했습니다. 치아 번호는 3D 위치와 객체 이름을 기준으로 연결한 것이므로 교육용 공개 전 최종 검수가 필요합니다. 표면 명칭은 교육용 일반 설명이며, 치아별 표면 해부학의 세부 차이는 후속 검증이 필요합니다.</div></aside></main><script type="module">
+import * as THREE from 'three';import {OrbitControls} from 'three/addons/controls/OrbitControls.js';import {TrackballControls} from 'three/addons/controls/TrackballControls.js';import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+const viewer=document.getElementById('viewer'),status=document.getElementById('status'),el=id=>document.getElementById(id),scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(43,1,.01,10000);const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputColorSpace=THREE.SRGBColorSpace;viewer.prepend(renderer.domElement);const orbitControls=new OrbitControls(camera,renderer.domElement);orbitControls.enableDamping=true;orbitControls.dampingFactor=.08;orbitControls.minDistance=.01;orbitControls.enabled=false;const trackballControls=new TrackballControls(camera,renderer.domElement);trackballControls.rotateSpeed=4.0;trackballControls.zoomSpeed=1.25;trackballControls.panSpeed=0.65;trackballControls.staticMoving=true;trackballControls.dynamicDampingFactor=0.12;trackballControls.enabled=true;let controls=trackballControls;scene.add(new THREE.HemisphereLight(0xffffff,0x9db7c8,2.5));const key=new THREE.DirectionalLight(0xffffff,2.7);key.position.set(5,9,12);scene.add(key);const fill=new THREE.DirectionalLight(0xa7d8fb,1.5);fill.position.set(-8,-2,-7);scene.add(fill);let model,roots=[],selected=null,isolated=false,baseCenter=new THREE.Vector3(),baseSize=1;const selectable=[];const boxOf=o=>new THREE.Box3().setFromObject(o);function frame(target){const b=boxOf(target),size=b.getSize(new THREE.Vector3()),center=b.getCenter(new THREE.Vector3());if(b.isEmpty())return;const max=Math.max(size.x,size.y,size.z,.01);const dir=camera.position.clone().sub(controls.target).normalize();if(dir.length()<.1)dir.set(1,.7,1).normalize();const distance=max/(2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2)))*1.8;controls.target.copy(center);camera.position.copy(center).addScaledVector(dir,distance);camera.near=Math.max(.001,distance/1000);camera.far=Math.max(1000,distance*100);camera.updateProjectionMatrix();controls.update()}
+const toothTypes={1:['중절치','Central incisor','치열의 가장 앞쪽에 있으며 음식물을 자르는 역할을 합니다.'],2:['측절치','Lateral incisor','중절치 옆에 위치하며 음식물을 잘라내는 기능을 돕습니다.'],3:['견치','Canine','뾰족한 교두와 비교적 긴 치근이 특징이며 음식물을 찢는 데 도움을 줍니다.'],4:['제1소구치','First premolar','견치 뒤쪽에 위치하며 음식물을 씹고 부수는 데 도움을 줍니다.'],5:['제2소구치','Second premolar','소구치 중 뒤쪽에 위치하고 음식물을 으깨는 역할을 합니다.'],6:['제1대구치','First molar','넓은 교합면을 이용해 음식물을 갈고 부수는 저작 기능을 담당합니다.'],7:['제2대구치','Second molar','제1대구치 뒤쪽에 있으며 넓은 교합면으로 저작을 돕습니다.'],8:['제3대구치 (사랑니)','Third molar','가장 뒤쪽에 위치하는 대구치로, 형태와 맹출 여부에 개인차가 큽니다.']};
+const anatomy={"상악":{"1":{"summary":"상·하악 절치 중 치관의 근원심 폭이 가장 크고, 절단연이 비교적 뚜렷합니다. 심미와 음식물 절단에 중요한 역할을 합니다.","features":["치관은 순면·설면·근심면·원심면의 4면과 절단연으로 구성됩니다.","치경선의 만곡이 매우 뚜렷하며, 좌우 중절치가 정중선에서 맞닿습니다.","일반적으로 하나의 치근을 갖습니다."],"eruption":"7~8세","page":94},"2":{"summary":"중절치보다 작고 전체적으로 둥근 형태를 가지는 앞니입니다. 형태 변화가 비교적 다양합니다.","features":["설면의 소와와 맹공이 나타날 수 있어 세밀한 관찰이 필요합니다.","절치 중 우각상징이 뚜렷하여 좌우 구분에 유리합니다.","쐐기 모양 치아 등 형태 변이가 나타나기도 합니다."],"eruption":"8~9세","page":104},"3":{"summary":"측절치와 제1소구치 사이에 위치하며 치근이 특히 길고 견고한 송곳니입니다.","features":["한 개의 뚜렷한 첨두가 있으며 근심 절단연이 원심 절단연보다 짧습니다.","근원심 폭보다 순설 폭이 큰 편입니다.","순면 융선과 설면의 해부학적 굴곡이 비교적 뚜렷합니다."],"eruption":"11~12세","page":132},"4":{"summary":"협측과 설측에 두 교두가 있고 근심변연구가 중요한 관찰 지점인 첫째 소구치입니다.","features":["대개 협측근과 구개측근으로 나뉜 두 치근을 나타냅니다.","협측 교두가 설측 교두보다 높고, 근심변연구가 관찰될 수 있습니다.","협측 교두정이 약간 원심으로 치우치는 특징을 관찰할 수 있습니다."],"eruption":"10~11세","page":156},"5":{"summary":"제1소구치보다 치관 외형이 둥글고 협측과 설측 교두의 높이 차이가 작습니다.","features":["두 교두의 크기와 높이가 비교적 비슷합니다.","좌우 대칭성이 강해 소구치 중 좌우 구분이 어려운 편입니다.","설측 교두의 발육이 좋은 것이 주요 구별점입니다."],"eruption":"10~12세","page":167},"6":{"summary":"상악의 대구치 가운데 크기가 크며 저작을 담당하는 대표적인 큰어금니입니다.","features":["주요 교두 네 개와 세 치근(구개측·근심협측·원심협측)을 관찰합니다.","교합면에 사주융선이 발달하며 근심설측교두가 크게 나타납니다.","근심설측 교두 부근에 카라벨리 결절이 나타날 수 있습니다."],"eruption":"6~7세","page":200},"7":{"summary":"상악 제1대구치보다 작고 원심설측 교두의 발육이 감소하는 경향이 있습니다.","features":["교합면은 4교두형 또는 3교두형으로 나타날 수 있습니다.","치근들은 제1대구치보다 서로 가까워지는 경향을 보입니다.","원심설측 교두 감소와 교합면의 윤곽 변화가 구별점입니다."],"eruption":"12~13세","page":212},"8":{"summary":"상악 치열의 가장 뒤쪽에 위치하는 사랑니로 치관과 치근의 형태 차이가 큽니다.","features":["3교두형이 흔하지만 형태는 다양합니다.","매복되거나 선천적으로 없는 경우도 있습니다.","교합면의 부구가 다양하며 맹출 시기에도 개인차가 큽니다."],"eruption":"17~21세(개인차 큼)","page":222}},"하악":{"1":{"summary":"영구치 중 가장 작으며 좌우가 매우 대칭적인 앞니입니다.","features":["치관이 좁고 우각상징·만곡상징이 약합니다.","좌우 구분이 가장 어려운 치아 중 하나입니다.","일반적으로 단근치이며 절단 기능을 담당합니다."],"eruption":"6~7세","page":112},"2":{"summary":"하악 중절치보다 크고 치관이 다소 비대칭적으로 나타나는 앞니입니다.","features":["하악 중절치보다 치관과 치근이 발달해 있습니다.","네 종류의 절치 중 치근 길이가 긴 편입니다.","총생이 비교적 잘 나타나는 치아로 소개됩니다."],"eruption":"7~8세","page":121},"3":{"summary":"상악 견치보다 형태가 작고 가늘며 치관 길이가 긴 송곳니입니다.","features":["치관 길이가 길며 순면의 융선과 구는 상악 견치보다 약한 편입니다.","근심 절단연이 원심 절단연보다 짧습니다.","근원심 치경선 만곡 차이가 큰 것이 구별점입니다."],"eruption":"9~10세","page":142},"4":{"summary":"견치를 닮은 형태가 나타나며 협측 교두가 특히 두드러지는 첫째 소구치입니다.","features":["협측 교두가 높고 설측 교두는 매우 작게 발달합니다.","근심설측구가 관찰될 수 있습니다.","두 교두의 높이 차이가 커서 교합면이 설측으로 기울어져 보이기도 합니다."],"eruption":"10~12세","page":176},"5":{"summary":"제1소구치보다 설측 교두가 잘 발달하며 대구치와 비슷한 형태를 보이기도 합니다.","features":["2교두형과 3교두형이 모두 나타날 수 있습니다.","3교두형에서는 설측 교두가 둘로 구분됩니다.","음식물을 부수는 교합면의 구조가 비교적 발달했습니다."],"eruption":"10~12세","page":186},"6":{"summary":"하악 치열에서 가장 큰 치아로, 먼저 맹출하는 영구치 중 하나이며 저작의 중심입니다.","features":["보통 다섯 교두(협측 3개, 설측 2개)가 발달합니다.","근심근과 원심근 두 치근으로 나뉩니다.","근원심 폭이 크며, 교합면의 구와 융선이 복잡하게 나타납니다."],"eruption":"6~7세","page":229},"7":{"summary":"제1대구치보다 작고 교합면의 네 교두가 비교적 규칙적으로 배치됩니다.","features":["4교두형이 대표적이며 교합면에서 십자(+) 형태의 발육구가 나타납니다.","대개 근심근과 원심근 두 치근을 가집니다.","제1대구치의 원심 교두가 없는 점이 주요 차이입니다."],"eruption":"11~13세","page":240},"8":{"summary":"하악 최후방의 사랑니로 형태, 배열, 치근 형태의 변이가 큽니다.","features":["치관 형태가 불규칙하고 치근이 짧거나 융합되기도 합니다.","부분 맹출이나 매복이 나타날 수 있습니다.","인접 제2대구치와의 관계를 관찰할 필요가 있습니다."],"eruption":"17~21세(개인차 큼)","page":249}}};
+const surfaces={"교합면":"Occlusal surface · 구치부에서 위아래 치아가 맞닿아 저작하는 표면입니다.","절단연":"Incisal edge · 앞니에서 음식물을 자르는 가장자리입니다.","협면/순면":"Buccal/Labial surface · 볼 또는 입술 방향을 향하는 바깥 표면입니다.","설면/구개면":"Lingual/Palatal surface · 혀 방향(상악의 경우 구개 방향)을 향하는 안쪽 표면입니다.","근심면":"Mesial surface · 치열 중앙선에 가까운 인접면입니다.","원심면":"Distal surface · 치열 중앙선에서 먼 인접면입니다."};
+
+// V15 local editable metadata. The original V8 selection hierarchy stays unchanged.
+const editStorageKey='dental-v16-edit-map';let overrides={};
+try{const raw=localStorage.getItem(editStorageKey);if(raw)overrides=JSON.parse(raw)||{}}catch(e){console.warn('Edit store unavailable',e)}
+const editFields={fdi:el('editFDI'),title:el('editTitle'),english:el('editEnglish'),summary:el('editSummary'),features:el('editFeatures')};
+for(const q of [1,2,3,4])for(let k=1;k<=8;k++){const o=document.createElement('option');o.value=''+q+k;o.textContent=''+q+k;editFields.fdi.append(o)}
+function objectKey(root){if(!root)return '';const ix=roots.indexOf(root);return 'root-'+ix+'-'+(root.parent?.name||'')+'/'+(root.name||'unnamed')}
+function saveOverrides(){try{localStorage.setItem(editStorageKey,JSON.stringify(overrides));return true}catch(e){el('editFeedback').textContent='저장 실패: JSON 백업 기능으로 파일을 보관해 주세요.';return false}}
+function editLoad(root){if(!root)return;const key=objectKey(root),data=overrides[key]||{};el('editObjectName').textContent='모델 그룹: '+root.name+' · 내부 메시: '+[...new Set((()=>{let a=[];root.traverse(o=>{if(o.isMesh)a.push(o.name)});return a})())].join(', ')+' · 식별 키: '+key;const info=describe(root);editFields.fdi.value=data.fdi??root.userData.fdi??'';editFields.title.value=data.title||'';editFields.english.value=data.english||'';editFields.summary.value=data.summary||'';editFields.features.value=(data.features||[]).join('\n');}
+el('editToggle').onclick=()=>el('editPanel').classList.toggle('open');
+el('editSave').onclick=()=>{if(!selected){el('editFeedback').textContent='먼저 치아를 클릭해 주세요.';return}const key=objectKey(selected);overrides[key]={fdi:editFields.fdi.value,title:editFields.title.value.trim(),english:editFields.english.value.trim(),summary:editFields.summary.value.trim(),features:editFields.features.value.split('\n').map(x=>x.trim()).filter(Boolean)};if(saveOverrides()){el('editFeedback').textContent='저장 완료 · 현재 브라우저에 저장했습니다.';setSelected(selected)}};
+el('editRemove').onclick=()=>{if(!selected)return;delete overrides[objectKey(selected)];saveOverrides();editLoad(selected);setSelected(selected);el('editFeedback').textContent='이 치아의 수정사항을 삭제했습니다.'};
+el('editExport').onclick=()=>{const blob=new Blob([JSON.stringify({version:16,changes:overrides},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='teeth_edits_v16.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+el('editImport').onclick=()=>el('editImportFile').click();el('editImportFile').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;try{const d=JSON.parse(await f.text());if(!d.changes||typeof d.changes!=='object'||Array.isArray(d.changes))throw Error('bad format');overrides=d.changes;saveOverrides();if(selected){editLoad(selected);setSelected(selected)}el('editFeedback').textContent='JSON 불러오기 완료'}catch(e){el('editFeedback').textContent='JSON 형식을 확인해 주세요.'}e.target.value=''};
+
+function rootName(obj){let p=obj;while(p&&p!==model){if(p.userData.toothRoot)return p;p=p.parent}return null}
+function chooseRoot(obj){const box=boxOf(obj);if(box.isEmpty())return;obj.userData.toothRoot=true;roots.push(obj);obj.traverse(m=>{if(m.isMesh){selectable.push(m);m.material=m.material.clone();if(m.material.color){m.material.color.multiplyScalar(0.80);}m.userData.originalMaterial=m.material;}})}
+function describe(r){
+const custom=overrides[objectKey(r)]||{};const fdi=custom.fdi!==undefined?(custom.fdi||null):(r.userData.fdi||null);
+if(!fdi)return {name:custom.title||'치아 번호 확인 필요',en:'Tooth identification pending',description:'이 객체는 현재 모델에서 치아 번호를 확정할 수 없습니다.',arch:'미확인',index:null,fdi:null,universal:null};
+const quadrant=Number(fdi[0]),index=Number(fdi[1]);
+const arch=quadrant<=2?'상악':'하악',side=[null,'우측','좌측','좌측','우측'][quadrant];
+const universal=quadrant===1?9-index:quadrant===2?8+index:quadrant===3?25-index:24+index;
+const t=toothTypes[index];
+return {name:custom.title||`${arch} ${side} ${t[0]}`,en:custom.english||t[1],description:t[2],arch,side,index,fdi,universal};
+}
+function clearHighlight(){if(!selected)return;selected.traverse(o=>{if(o.isMesh&&o.userData.originalMaterial)o.material=o.userData.originalMaterial})}
+function setSelected(r){disableAnnotated();clearHighlight();selected=r;if(!r)return;const info=describe(r);r.traverse(o=>{if(o.isMesh){const mat=o.userData.originalMaterial.clone();mat.color.set('#75c2ec');mat.emissive?.set('#09436c');mat.emissiveIntensity=.12;o.material=mat}});el('toothLabel').textContent=info.fdi?`영구치 · FDI ${info.fdi}`:'치아 번호 확인 필요';el('fdiNumber').textContent=info.fdi||'—';el('universalNumber').textContent=info.universal||'—';el('toothName').textContent=(overrides[objectKey(r)]?.title||info.name);el('toothEnglish').textContent=(overrides[objectKey(r)]?.english||info.en);const detail=info.index&&anatomy[info.arch]?.[info.index];const userEdit=overrides[objectKey(r)]||{};el('description').textContent=userEdit.summary||detail?.summary||info.description;el('jaw').textContent=info.arch+(info.side?' '+info.side:'');el('deepSection').style.display=(detail||userEdit.features?.length)?'block':'none';el('deepFeatures').replaceChildren();if(detail){for(const note of [...(userEdit.features?.length?userEdit.features:detail.features), '일반적인 맹출 시기: '+detail.eruption]){const box=document.createElement('div');box.className='feature-item';box.textContent=note;el('deepFeatures').append(box)}el('sourceRef').textContent='참고: 『치아형태학』 제4판, 영구치 각론, 인쇄본 '+detail.page+'쪽부터 · 학습용 요약';}else if(userEdit.features?.length){for(const note of userEdit.features){const box=document.createElement('div');box.className='feature-item';box.textContent=note;el('deepFeatures').append(box)}el('sourceRef').textContent='사용자가 직접 입력한 설명';}editLoad(r);el('sceneTitle').textContent='선택한 치아 관찰';renderTabs(info.index);if(isolated)showIsolated();else frame(r)}
+function renderTabs(index){let items=(index&&index<=3)?['절단연','협면/순면','설면/구개면','근심면','원심면']:['교합면','협면/순면','설면/구개면','근심면','원심면'];const tabs=el('tabs');tabs.replaceChildren();items.forEach((name,i)=>{const b=document.createElement('button');b.className='tab'+(!i?' active':'');b.textContent=name;b.onclick=()=>{tabs.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');el('surfaceInfo').textContent=surfaces[name]};tabs.append(b)});el('surfaceInfo').textContent=surfaces[items[0]]}
+
+// 23번과 36번 표면 분할 모델. 기존 전체 치열 모델은 변경하지 않음.
+const surfaceNamesByTooth={
+ '23':{
+  'labial surface':['순면','Labial surface','입술 방향을 향하는 바깥쪽 치관 표면입니다.'],
+  'lingual surface':['설면(구개면)','Lingual/Palatal surface','입천장 방향을 향하는 안쪽 표면입니다.'],
+  'mesial surface':['근심면','Mesial surface','정중선에 가까운 인접면입니다.'],
+  'distal surface2':['원심면','Distal surface','정중선에서 먼 인접면입니다.'],
+  'distal surface':['원심면','Distal surface','정중선에서 먼 인접면입니다.']
+ },
+ '36':{
+  'occlusal surface':['교합면','Occlusal surface','음식물을 씹고 갈아 부수는 치관의 저작면입니다.'],
+  'buccal surface':['협면','Buccal surface','볼 방향을 향하는 바깥쪽 치관 표면입니다.'],
+  'lingual surface':['설면','Lingual surface','혀 방향을 향하는 안쪽 치관 표면입니다.'],
+  'mesial surface':['근심면','Mesial surface','정중선에 가까운 인접면입니다.'],
+  'distal surface':['원심면','Distal surface','정중선에서 먼 인접면입니다.']
+ }
+};
+const annotatedModels={'23':null,'36':null};
+const annotatedReady={'23':false,'36':false};
+const annotatedFailed={'23':false,'36':false};
+const surfaceAnchors={'23':[],'36':[]};
+let activeTooth=null,pendingTooth=null;
+function loadAnnotatedTooth(number){
+ new GLTFLoader().load('./tooth_'+number+'_annotated.glb',g=>{
+  const obj=g.scene; annotatedModels[number]=obj;scene.add(obj);obj.visible=false;annotatedReady[number]=true;
+  obj.updateMatrixWorld(true);
+  obj.traverse(mesh=>{if(!mesh.isMesh)return;
+   const mats=Array.isArray(mesh.material)?mesh.material:[mesh.material];
+   if(mats.length===1&&surfaceNamesByTooth[number][mats[0]?.name])surfaceAnchors[number].push({mesh,info:surfaceNamesByTooth[number][mats[0].name],mat:mats[0]});
+   else if(mesh.geometry.groups?.length){for(const gr of mesh.geometry.groups){const mat=mats[gr.materialIndex];if(mat&&surfaceNamesByTooth[number][mat.name])surfaceAnchors[number].push({mesh,info:surfaceNamesByTooth[number][mat.name],mat,group:gr});}}
+  });
+  if(pendingTooth===number){pendingTooth=null;activateAnnotated(number)}
+ },undefined,e=>{annotatedFailed[number]=true;console.error(number+'번 GLB 로딩 실패',e)});
+}
+function activateAnnotated(number){
+ if(!annotatedReady[number]){pendingTooth=number;status.textContent=annotatedFailed[number]?number+'번 별도 GLB 로딩 실패':number+'번 표면 모델 로딩 중…';return}
+ pendingTooth=null;
+ for(const obj of Object.values(annotatedModels))if(obj)obj.visible=false;
+ activeTooth=number;model.visible=false;annotatedModels[number].visible=true;
+ trackballControls.enabled=true;controls=trackballControls;
+ frame(annotatedModels[number]);
+ el('surfaceAnnotation').classList.add('active');el('surfaceGuide').classList.add('active');
+ el('surfaceGuide').textContent=number+'번 · 드래그로 자유롭게 360° 회전하고 표면 이름을 클릭해 보세요.';
+ buildSurfacePins(number);status.textContent=number+'번 표면 학습 · 360° 회전 가능';
+}
+function disableAnnotated(){
+ pendingTooth=null;activeTooth=null;
+ for(const obj of Object.values(annotatedModels))if(obj)obj.visible=false;
+ if(model)model.visible=true;
+ trackballControls.enabled=true;controls=trackballControls;
+ el('surfaceAnnotation').classList.remove('active');el('surfaceGuide').classList.remove('active');
+}
+function buildSurfacePins(number){
+ const pins=el('surfacePins');pins.replaceChildren();el('surfaceLines').replaceChildren();
+ for(const record of surfaceAnchors[number]){
+  const btn=document.createElement('button');btn.className='surface-pin';btn.type='button';
+  const dot=document.createElement('span');dot.style.cssText='display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;background:#'+record.mat.color.getHexString(THREE.SRGBColorSpace);
+  btn.append(dot,document.createTextNode(record.info[0]));const sub=document.createElement('small');sub.textContent=record.info[1];btn.append(sub);
+  btn.onclick=()=>{el('surfaceInfo').textContent=record.info[0]+' · '+record.info[2]};
+  pins.appendChild(btn);record.pin=btn;
+  const line=document.createElementNS('http://www.w3.org/2000/svg','line');el('surfaceLines').appendChild(line);record.line=line;
+ }
+}
+function updateSurfacePins(){
+ if(!activeTooth||!annotatedModels[activeTooth]?.visible||!el('surfaceAnnotation').classList.contains('active'))return;
+ const records=surfaceAnchors[activeTooth],w=viewer.clientWidth,h=viewer.clientHeight;
+ records.forEach((record,i)=>{
+  const m=record.mesh,g=m.geometry,attr=g.attributes.position,idx=g.index;if(!attr)return;
+  const start=record.group?.start||0,end=record.group?(start+record.group.count):(idx?idx.count:attr.count);
+  const sample=Math.max(1,Math.floor((end-start)/180));let sum=new THREE.Vector3(),n=0;
+  for(let j=start;j<end;j+=sample){const k=idx?idx.getX(j):j;sum.add(new THREE.Vector3().fromBufferAttribute(attr,k));n++}
+  if(!n)return;sum.multiplyScalar(1/n).applyMatrix4(m.matrixWorld).project(camera);
+  const x=(sum.x+1)*w/2,y=(-sum.y+1)*h/2,dx=(i%2===0?-1:1)*Math.min(175,w*.22),dy=(i-(records.length-1)/2)*36;
+  const lx=Math.max(70,Math.min(w-70,x+dx)),ly=Math.max(145,Math.min(h-110,y+dy));
+  record.pin.style.left=lx+'px';record.pin.style.top=ly+'px';record.pin.style.display=(sum.z>1||sum.z< -1)?'none':'';
+  record.line.setAttribute('x1',x);record.line.setAttribute('y1',y);record.line.setAttribute('x2',lx);record.line.setAttribute('y2',ly);
+ });
+}
+function showAll(){disableAnnotated();isolated=false;roots.forEach(r=>r.visible=true);clearHighlight();selected=null;status.textContent='전체 치열 보기 · 드래그로 360° 자유 회전 가능';el('sceneTitle').textContent='전체 영구치열';el('toothLabel').textContent='3D TOOTH EXPLORER';el('toothName').textContent='치아를 선택해 보세요';el('toothEnglish').textContent='Select a tooth to explore';el('fdiNumber').textContent='—';el('universalNumber').textContent='—';el('description').textContent='왼쪽의 3D 치열에서 치아를 클릭하면 상세 학습을 시작할 수 있습니다.';el('jaw').textContent='—';el('deepSection').style.display='none';el('tabs').replaceChildren();el('surfaceInfo').textContent='치아를 선택하면 표면 용어를 학습할 수 있습니다.';if(model)frame(model)}function showIsolated(){if(!selected){status.textContent='먼저 치아 하나를 클릭해 주세요.';return}isolated=true;roots.forEach(r=>r.visible=r===selected);clearHighlight();if(['23','36'].includes(describe(selected).fdi)){activateAnnotated(describe(selected).fdi)}else{disableAnnotated();frame(selected);status.textContent='단일 치아 보기 · 360° 자유 회전 가능'}}el('preview23Btn').onclick=()=>{
+ isolated=true;
+ if(model){roots.forEach(r=>r.visible=false);}
+ if(selected)clearHighlight();
+ selected=null;
+ el('sceneTitle').textContent='23번 표면별 컬러 모델 테스트';
+ el('toothLabel').textContent='별도 GLB 미리보기 · 실제 치열 번호 매칭과 무관';
+ el('toothName').textContent='상악 좌측 견치 (23번)';
+ el('toothEnglish').textContent='Maxillary left canine';
+ el('fdiNumber').textContent='23';
+ el('universalNumber').textContent='11';
+ el('jaw').textContent='상악 좌측';
+ el('description').textContent='Blender에서 색칠한 23번 전용 GLB를 테스트 중입니다. 전체 치열의 치아 번호 연결과 무관하게 이 파일을 직접 보여줍니다.';
+ el('deepSection').style.display='none';
+ renderTabs(3);
+ activateAnnotated('23');
+};
+el('preview36Btn').onclick=()=>{
+ isolated=true;if(model)roots.forEach(r=>r.visible=false);if(selected)clearHighlight();selected=null;
+ el('sceneTitle').textContent='36번 표면별 컬러 모델 테스트';
+ el('toothLabel').textContent='별도 GLB 미리보기 · 치열 번호 매칭과 무관';
+ el('toothName').textContent='하악 좌측 제1대구치 (36번)';el('toothEnglish').textContent='Mandibular left first molar';
+ el('fdiNumber').textContent='36';el('universalNumber').textContent='19';el('jaw').textContent='하악 좌측';
+ el('description').textContent='Blender에서 표면별 재질을 지정한 36번 치아입니다. 드래그하여 360° 회전하며 관찰하세요.';
+ el('deepSection').style.display='none';renderTabs(6);activateAnnotated('36');
+};
+el('allBtn').onclick=showAll;el('focusBtn').onclick=showIsolated;el('resetBtn').onclick=()=>{if(activeTooth&&annotatedModels[activeTooth]?.visible)frame(annotatedModels[activeTooth]);else if(selected&&isolated)frame(selected);else if(model)frame(model)};
+const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();let down=null;renderer.domElement.addEventListener('pointerdown',e=>{down=[e.clientX,e.clientY]});renderer.domElement.addEventListener('pointerup',e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>6)return;const rect=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);raycaster.setFromCamera(pointer,camera);const hit=raycaster.intersectObjects(selectable.filter(x=>x.visible&&x.parent?.visible),false).find(h=>rootName(h.object)?.visible);if(hit){setSelected(rootName(hit.object));status.textContent='치아 선택됨 · 드래그해서 자유롭게 관찰하세요'}});
+new GLTFLoader().load('./teeth_model.glb',gltf=>{model=gltf.scene;scene.add(model);model.updateMatrixWorld(true);
+// V8 방식: GLB의 원래 계층구조를 그대로 두고 부모 객체를 선택 대상으로 등록합니다.
+const byName=new Map();model.traverse(n=>byName.set(n.name,n));
+const upper=byName.get('group2'),lower=byName.get('Mandible_group1');
+for(const g of [upper,lower])if(g)for(const child of g.children){
+  if(child.name.startsWith('transform'))continue;
+  // Some imported parent nodes hold TWO distinct teeth. Register each mesh independently.
+  // Do not re-parent or merge GLB objects: each mesh keeps its original local/world transform.
+  const meshes=[];child.traverse(o=>{if(o.isMesh)meshes.push(o)});
+  if(meshes.length>1){for(const mesh of meshes)chooseRoot(mesh)}
+  else chooseRoot(child);
+}
+if(!roots.length)model.traverse(o=>{if(o.isMesh)chooseRoot(o)});
+// 치아 번호는 원본 이름으로 구분 가능한 경우에만 부여합니다. 치아 객체는 절대 옮기지 않습니다.
+const meshToFDI={
+'polySurface2':'11','polySurface4':'12','polySurface6':'13','ZBrushPolyMesh3D8':'14','ZBrushPolyMesh3D9':'15','polySurface8':'16','polySurface10':'17','polySurface12':'18',
+'polySurface1':'21','ZBrushPolyMesh3D1.001':'22','ZBrushPolyMesh3D2.001':'23','ZBrushPolyMesh3D3.001':'24','ZBrushPolyMesh3D4.001':'25','ZBrushPolyMesh3D5.001':'26','polySurface7':'26','polySurface9':'27','ZBrushPolyMesh3D7.001':'28'};
+const norm=s=>(s||'').replace(/\./g,'_').toLowerCase();
+const toothMap=new Map(Object.entries(meshToFDI).map(([n,f])=>[norm(n),f]));
+let numbered=0;
+for(const root of roots){
+  const ids=new Set();root.traverse(obj=>{if(obj.isMesh){const f=toothMap.get(norm(obj.name));if(f)ids.add(f)}});
+  const name=root.name||'';
+  const ll=name.match(/^LL([1-8])seam/i);
+  if(ll)ids.add('3'+ll[1]);
+  const rightNames=['ZBrushPolyMesh3D7','ZBrushPolyMesh3D6','ZBrushPolyMesh3D5','ZBrushPolyMesh3D4','ZBrushPolyMesh3D3','ZBrushPolyMesh3D2','ZBrushPolyMesh3D1','ZBrushPolyMesh3D'];
+  if(root.parent===lower){const idx=rightNames.indexOf(name);if(idx!==-1)ids.add('4'+(idx+1));}
+  if(ids.size===1){root.userData.fdi=[...ids][0];numbered++}
+}
+const box=boxOf(model);box.getCenter(baseCenter);baseSize=box.getSize(new THREE.Vector3()).length();camera.position.copy(baseCenter).add(new THREE.Vector3(baseSize*.7,baseSize*.45,baseSize*.95));frame(model);loadAnnotatedTooth('23');loadAnnotatedTooth('36');
+status.textContent=`V8 기반 개별 치아 선택 · 선택 가능한 객체 ${roots.length}개 · 번호 연결 ${numbered}개`;
+},undefined,e=>{status.textContent='모델 로딩 실패: 로컬 서버 실행 여부 및 인터넷 연결을 확인하세요.';console.error(e)});
+function resize(){const w=viewer.clientWidth,h=viewer.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();trackballControls.handleResize()}new ResizeObserver(resize).observe(viewer);resize();function animate(){requestAnimationFrame(animate);controls.update();updateSurfacePins();renderer.render(scene,camera)}animate();
+</script></body></html>
