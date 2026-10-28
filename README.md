@@ -20,3 +20,8 @@
 - 번호·설명 직접 편집 내용은 **사용자의 브라우저 localStorage에만 저장**됩니다. GitHub 저장소나 다른 방문자의 화면에 자동 반영되지 않습니다. `JSON 백업` 기능으로 별도 보관하세요.
 - GitHub Pages가 Public 저장소에 게시되면 콘텐츠와 파일은 공개적으로 접근 가능합니다. 업로드한 모델, 이미지 및 글꼴의 공개 배포 권한을 확인해 주세요.
 - 별도의 `python http.server`나 Windows BAT 실행이 필요하지 않습니다.
+
+
+## Update
+- `tooth_36_annotated.glb` has been replaced with a semi-transparent 36th tooth model (`Tooth_Transparent.glb`).
+- The uploaded transparent model was identified as **36번 치아** based on embedded mesh/material names (`Tooth_36`, `occlusal surface`, `buccal surface`, `lingual surface`, `mesial surface`, `distal surface`).
