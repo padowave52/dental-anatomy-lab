@@ -1,27 +1,22 @@
-# Dental Anatomy Lab — GitHub Pages 배포판
+# Dental Anatomy Lab — 모든 치아 반투명 V25
 
-이 폴더의 파일은 별도 빌드 과정 없이 GitHub Pages에서 실행하는 정적 웹사이트입니다.
+GitHub Pages 배포용 정적 웹사이트입니다.
 
-## 배포하기
-1. GitHub에서 **Public** 저장소를 만듭니다. (예: `dental-anatomy-lab`)
-2. 이 폴더 **안의 파일과 `fonts` 폴더**를 저장소의 최상위(root)에 업로드합니다. ZIP을 그대로 업로드하지 마세요.
-3. 저장소의 **Settings → Pages → Build and deployment**에서 **Deploy from a branch**를 선택합니다.
-4. Branch: **main**, Folder: **/(root)** 를 선택하고 Save 합니다.
-5. 게시 주소: `https://<GitHub-사용자명>.github.io/<저장소명>/` 에 접속합니다. 배포 상태는 Settings → Pages 또는 Actions에서 확인할 수 있습니다.
+## 변경 내용
+- 원본 전체 치열의 모든 33개 메시 / 16개 재질을 반투명 GLB로 수정하고, 기존 객체 및 치아 번호 연결을 보존했습니다.
+- 23번과 36번은 기존에 사용자가 색칠한 면별 컬러 모델을 유지합니다.
+- 치아 투명도 슬라이더(0–90%)로 전체 치열과 단독 보기의 표시 투명도를 조절합니다. 시작 값은 50%입니다.
+- 치아 선택·설명·JSON 편집·360도 회전 기능을 유지합니다.
 
-### 주요 파일
-- `index.html`: 웹사이트
-- `teeth_model.glb`: 전체 치열
-- `tooth_23_annotated.glb`, `tooth_36_annotated.glb`: 표면 학습 모델
-- `fonts/`: 글꼴
+**중요:** 23번·36번 이외의 치아는 표면별 해부학적 색상 분할 없이 **반투명 단일 치아 재질**입니다. 전체 치열 GLB의 원본 계층/번호 및 메시 데이터는 바꾸지 않았습니다.
 
-### 주의사항
-- 웹사이트의 3D 엔진(Three.js)은 jsDelivr에서 불러오므로 인터넷 연결이 필요합니다.
-- 번호·설명 직접 편집 내용은 **사용자의 브라우저 localStorage에만 저장**됩니다. GitHub 저장소나 다른 방문자의 화면에 자동 반영되지 않습니다. `JSON 백업` 기능으로 별도 보관하세요.
-- GitHub Pages가 Public 저장소에 게시되면 콘텐츠와 파일은 공개적으로 접근 가능합니다. 업로드한 모델, 이미지 및 글꼴의 공개 배포 권한을 확인해 주세요.
-- 별도의 `python http.server`나 Windows BAT 실행이 필요하지 않습니다.
+## GitHub Pages
+1. 이 폴더의 파일과 `fonts` 디렉터리를 저장소 **루트**에 업로드합니다 (ZIP 자체를 업로드하지 마세요).
+2. `Settings → Pages → Deploy from a branch → main / (root)`를 선택합니다.
+3. `.nojekyll` 파일도 포함합니다.
+4. 3D 파일은 인터넷이 연결된 브라우저에서 로드합니다 (Three.js CDN 사용).
 
+수정된 파일: `index.html`, `teeth_model_transparent.glb`, `README.md`.
+기존 `teeth_model.glb`는 새 파일로 **대체**되므로, 기존 저장소에 남아 있다면 삭제해도 됩니다.
 
-## Update
-- `tooth_36_annotated.glb` has been replaced with a semi-transparent 36th tooth model (`Tooth_Transparent.glb`).
-- The uploaded transparent model was identified as **36번 치아** based on embedded mesh/material names (`Tooth_36`, `occlusal surface`, `buccal surface`, `lingual surface`, `mesial surface`, `distal surface`).
+원본 치아 모델과 글꼴의 재배포 라이선스를 확인하세요.

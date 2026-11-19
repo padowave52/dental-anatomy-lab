@@ -1,4 +1,4 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Dental Anatomy Lab V20 | 영구치열 3D 학습</title><style>
+<!doctype html><html lang="ko"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Dental Anatomy Lab V25 | 영구치열 3D 학습</title><style>
 @font-face{font-family:'Paperlogy';src:url('./fonts/Paperlogy-4Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:'Paperlogy';src:url('./fonts/Paperlogy-6SemiBold.ttf') format('truetype');font-weight:600;font-style:normal;font-display:swap}
 
@@ -28,7 +28,11 @@ body,button{font-family:'Paperlogy','Malgun Gothic',sans-serif;font-weight:400}
 .surface-guide{position:absolute;top:104px;left:24px;font-size:12px;color:#244a62;background:#f0f8fbe6;border-radius:8px;padding:8px 10px;display:none;z-index:3}
 .surface-guide.active{display:block}
 @media(max-width:800px){.surface-pin{font-size:11px;padding:5px}}
-</style><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script></head><body><header class="top"><div class="brand">🦷 Dental <em>Anatomy</em> Lab <span class="version">V23 · 23 + 36 SURFACES 65:35</span></div><div class="tiny">영구치열 · 인터랙티브 3D 학습</div></header><main class="layout"><section class="viewer" id="viewer"><div class="vtop"><div class="eyebrow">INTERACTIVE DENTAL ATLAS</div><div class="vtitle" id="sceneTitle">전체 영구치열</div><div class="hint">드래그: 자유 회전 · 휠: 확대/축소 · 치아 클릭: 상세보기</div></div><div class="surface-annotation" id="surfaceAnnotation"><svg id="surfaceLines"></svg><div id="surfacePins"></div></div><div class="surface-guide" id="surfaceGuide">23번 · 자유롭게 360° 회전하고, 면 이름을 클릭하면 설명이 나와요.</div><div class="status" id="status">V23 모델 불러오는 중…</div><div class="toolbar"><button class="btn primary" id="allBtn">↶ 전체 치열 보기</button><button class="btn" id="focusBtn">◎ 선택 치아만 보기</button><button class="btn" id="resetBtn">⟲ 보기 초기화</button><button class="btn" id="preview23Btn" style="background:#e0f4e9;border-color:#a6d0b5;color:#166344">🦷 23번 컬러 모델 테스트</button><button class="btn" id="preview36Btn" style="background:#f0e8ff;border-color:#c8b7e1;color:#544078">🦷 36번 컬러 모델 테스트</button></div></section><aside class="side"><span class="pill" id="toothLabel">3D TOOTH EXPLORER</span><div class="name" id="toothName">치아를 선택해 보세요</div><div class="english" id="toothEnglish">Select a tooth to explore</div><div class="fdi-display"><div class="fdi-card"><small>FDI 치아 번호</small><strong id="fdiNumber">—</strong></div><div class="fdi-card"><small>1~32 번호</small><strong id="universalNumber">—</strong></div></div><div class="fdi-help">FDI: 상악 우측 1번대 · 상악 좌측 2번대 · 하악 좌측 3번대 · 하악 우측 4번대</div><div class="section"><h3>치아 설명</h3><div class="description" id="description">왼쪽의 실제 3D 치열 모델에서 원하는 치아를 클릭하세요. 선택한 치아를 강조하고 개별 확대해서 관찰할 수 있습니다.</div><div class="metrics"><div class="metric"><small>위치</small><strong id="jaw">—</strong></div></div></div><div class="section" id="deepSection" style="display:none"><h3>형태학적 핵심 특징</h3><div id="deepFeatures" class="feature-list"></div><div class="source" id="sourceRef"></div></div><div class="section"><h3>치아 표면 학습</h3><div class="tabs" id="tabs"></div><div class="description" id="surfaceInfo" style="margin-top:12px">치아를 선택하면 표면 용어를 학습할 수 있습니다.</div></div><div class="editor"><button class="edit-toggle" id="editToggle" type="button">✎ 치아 번호·설명 직접 편집하기</button><div class="edit-panel" id="editPanel"><div class="edit-note">3D에서 치아를 선택하고 정보를 변경하세요. 저장은 현재 브라우저에 적용됩니다. 다른 PC로 옮기려면 JSON을 내보내세요.</div><div class="edit-key" id="editObjectName">치아를 선택하면 원본 객체명이 표시됩니다.</div><label class="edit-label" for="editFDI">FDI 번호 (11~48)</label><select class="edit-input" id="editFDI"><option value="">미지정</option></select><label class="edit-label" for="editTitle">치아 이름 (선택)</label><input class="edit-input" id="editTitle" placeholder="예: 상악 좌측 제1대구치"><label class="edit-label" for="editEnglish">영어 이름 (선택)</label><input class="edit-input" id="editEnglish" placeholder="Maxillary first molar"><label class="edit-label" for="editSummary">치아 설명 (선택)</label><textarea class="edit-input" id="editSummary" rows="4" placeholder="치아 형태 및 기능"></textarea><label class="edit-label" for="editFeatures">핵심 특징 (한 줄에 하나)</label><textarea class="edit-input" id="editFeatures" rows="4"></textarea><div class="edit-actions"><button class="btn primary" type="button" id="editSave">이 치아 저장</button><button class="btn" type="button" id="editRemove">수정 삭제</button></div><div class="edit-actions"><button class="btn" type="button" id="editExport">JSON 백업</button><button class="btn" type="button" id="editImport">JSON 불러오기</button><input type="file" id="editImportFile" accept=".json,application/json" hidden></div><div class="edit-note" id="editFeedback">같은 브라우저에서는 저장한 수정 사항이 유지됩니다.</div></div></div><div class="foot">※ 하나의 그룹에 포함되어 있던 상악 치아를 메시별로 선택하도록 수정했습니다. 치아 번호는 3D 위치와 객체 이름을 기준으로 연결한 것이므로 교육용 공개 전 최종 검수가 필요합니다. 표면 명칭은 교육용 일반 설명이며, 치아별 표면 해부학의 세부 차이는 후속 검증이 필요합니다.</div></aside></main><script type="module">
+
+.opacity-settings{position:absolute;left:18px;bottom:86px;z-index:5;padding:11px 14px;border:1px solid #d5e2eb;border-radius:12px;background:rgba(255,255,255,.92);display:flex;align-items:center;gap:12px;box-shadow:0 3px 12px #20364a12;font-size:13px;color:#234357}
+.opacity-settings label{font-weight:600;white-space:nowrap}.opacity-settings input{width:155px;accent-color:#1686b5;cursor:pointer}.opacity-settings output{font-variant-numeric:tabular-nums;min-width:37px;font-weight:600}
+@media(max-width:800px){.opacity-settings{left:12px;bottom:108px;padding:7px 10px;font-size:11px}.opacity-settings input{width:100px}}
+</style><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script></head><body><header class="top"><div class="brand">🦷 Dental <em>Anatomy</em> Lab <span class="version">V25 · ALL TEETH TRANSPARENT 65:35</span></div><div class="tiny">영구치열 · 인터랙티브 3D 학습</div></header><main class="layout"><section class="viewer" id="viewer"><div class="vtop"><div class="eyebrow">INTERACTIVE DENTAL ATLAS</div><div class="vtitle" id="sceneTitle">전체 영구치열</div><div class="hint">드래그: 자유 회전 · 휠: 확대/축소 · 치아 클릭: 상세보기</div></div><div class="surface-annotation" id="surfaceAnnotation"><svg id="surfaceLines"></svg><div id="surfacePins"></div></div><div class="surface-guide" id="surfaceGuide">23번 · 자유롭게 360° 회전하고, 면 이름을 클릭하면 설명이 나와요.</div><div class="status" id="status">V25 반투명 전체 치열 모델 불러오는 중…</div><div class="opacity-settings" id="opacitySettings"><label for="opacitySlider">치아 투명도</label><input id="opacitySlider" type="range" min="0" max="90" step="5" value="50" aria-label="치아 투명도"><output for="opacitySlider" id="opacityLabel">50%</output></div><div class="toolbar"><button class="btn primary" id="allBtn">↶ 전체 치열 보기</button><button class="btn" id="focusBtn">◎ 선택 치아만 보기</button><button class="btn" id="resetBtn">⟲ 보기 초기화</button><button class="btn" id="preview23Btn" style="background:#e0f4e9;border-color:#a6d0b5;color:#166344">🦷 23번 컬러 모델 테스트</button><button class="btn" id="preview36Btn" style="background:#f0e8ff;border-color:#c8b7e1;color:#544078">🦷 36번 컬러 모델 테스트</button></div></section><aside class="side"><span class="pill" id="toothLabel">3D TOOTH EXPLORER</span><div class="name" id="toothName">치아를 선택해 보세요</div><div class="english" id="toothEnglish">Select a tooth to explore</div><div class="fdi-display"><div class="fdi-card"><small>FDI 치아 번호</small><strong id="fdiNumber">—</strong></div><div class="fdi-card"><small>1~32 번호</small><strong id="universalNumber">—</strong></div></div><div class="fdi-help">FDI: 상악 우측 1번대 · 상악 좌측 2번대 · 하악 좌측 3번대 · 하악 우측 4번대</div><div class="section"><h3>치아 설명</h3><div class="description" id="description">왼쪽의 실제 3D 치열 모델에서 원하는 치아를 클릭하세요. 선택한 치아를 강조하고 개별 확대해서 관찰할 수 있습니다.</div><div class="metrics"><div class="metric"><small>위치</small><strong id="jaw">—</strong></div></div></div><div class="section" id="deepSection" style="display:none"><h3>형태학적 핵심 특징</h3><div id="deepFeatures" class="feature-list"></div><div class="source" id="sourceRef"></div></div><div class="section"><h3>치아 표면 학습</h3><div class="tabs" id="tabs"></div><div class="description" id="surfaceInfo" style="margin-top:12px">치아를 선택하면 표면 용어를 학습할 수 있습니다.</div></div><div class="editor"><button class="edit-toggle" id="editToggle" type="button">✎ 치아 번호·설명 직접 편집하기</button><div class="edit-panel" id="editPanel"><div class="edit-note">3D에서 치아를 선택하고 정보를 변경하세요. 저장은 현재 브라우저에 적용됩니다. 다른 PC로 옮기려면 JSON을 내보내세요.</div><div class="edit-key" id="editObjectName">치아를 선택하면 원본 객체명이 표시됩니다.</div><label class="edit-label" for="editFDI">FDI 번호 (11~48)</label><select class="edit-input" id="editFDI"><option value="">미지정</option></select><label class="edit-label" for="editTitle">치아 이름 (선택)</label><input class="edit-input" id="editTitle" placeholder="예: 상악 좌측 제1대구치"><label class="edit-label" for="editEnglish">영어 이름 (선택)</label><input class="edit-input" id="editEnglish" placeholder="Maxillary first molar"><label class="edit-label" for="editSummary">치아 설명 (선택)</label><textarea class="edit-input" id="editSummary" rows="4" placeholder="치아 형태 및 기능"></textarea><label class="edit-label" for="editFeatures">핵심 특징 (한 줄에 하나)</label><textarea class="edit-input" id="editFeatures" rows="4"></textarea><div class="edit-actions"><button class="btn primary" type="button" id="editSave">이 치아 저장</button><button class="btn" type="button" id="editRemove">수정 삭제</button></div><div class="edit-actions"><button class="btn" type="button" id="editExport">JSON 백업</button><button class="btn" type="button" id="editImport">JSON 불러오기</button><input type="file" id="editImportFile" accept=".json,application/json" hidden></div><div class="edit-note" id="editFeedback">같은 브라우저에서는 저장한 수정 사항이 유지됩니다.</div></div></div><div class="foot">※ 하나의 그룹에 포함되어 있던 상악 치아를 메시별로 선택하도록 수정했습니다. 치아 번호는 3D 위치와 객체 이름을 기준으로 연결한 것이므로 교육용 공개 전 최종 검수가 필요합니다. 표면 명칭은 교육용 일반 설명이며, 치아별 표면 해부학의 세부 차이는 후속 검증이 필요합니다.</div></aside></main><script type="module">
 import * as THREE from 'three';import {OrbitControls} from 'three/addons/controls/OrbitControls.js';import {TrackballControls} from 'three/addons/controls/TrackballControls.js';import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 const viewer=document.getElementById('viewer'),status=document.getElementById('status'),el=id=>document.getElementById(id),scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(43,1,.01,10000);const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputColorSpace=THREE.SRGBColorSpace;viewer.prepend(renderer.domElement);const orbitControls=new OrbitControls(camera,renderer.domElement);orbitControls.enableDamping=true;orbitControls.dampingFactor=.08;orbitControls.minDistance=.01;orbitControls.enabled=false;const trackballControls=new TrackballControls(camera,renderer.domElement);trackballControls.rotateSpeed=4.0;trackballControls.zoomSpeed=1.25;trackballControls.panSpeed=0.65;trackballControls.staticMoving=true;trackballControls.dynamicDampingFactor=0.12;trackballControls.enabled=true;let controls=trackballControls;scene.add(new THREE.HemisphereLight(0xffffff,0x9db7c8,2.5));const key=new THREE.DirectionalLight(0xffffff,2.7);key.position.set(5,9,12);scene.add(key);const fill=new THREE.DirectionalLight(0xa7d8fb,1.5);fill.position.set(-8,-2,-7);scene.add(fill);let model,roots=[],selected=null,isolated=false,baseCenter=new THREE.Vector3(),baseSize=1;const selectable=[];const boxOf=o=>new THREE.Box3().setFromObject(o);function frame(target){const b=boxOf(target),size=b.getSize(new THREE.Vector3()),center=b.getCenter(new THREE.Vector3());if(b.isEmpty())return;const max=Math.max(size.x,size.y,size.z,.01);const dir=camera.position.clone().sub(controls.target).normalize();if(dir.length()<.1)dir.set(1,.7,1).normalize();const distance=max/(2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2)))*1.8;controls.target.copy(center);camera.position.copy(center).addScaledVector(dir,distance);camera.near=Math.max(.001,distance/1000);camera.far=Math.max(1000,distance*100);camera.updateProjectionMatrix();controls.update()}
 const toothTypes={1:['중절치','Central incisor','치열의 가장 앞쪽에 있으며 음식물을 자르는 역할을 합니다.'],2:['측절치','Lateral incisor','중절치 옆에 위치하며 음식물을 잘라내는 기능을 돕습니다.'],3:['견치','Canine','뾰족한 교두와 비교적 긴 치근이 특징이며 음식물을 찢는 데 도움을 줍니다.'],4:['제1소구치','First premolar','견치 뒤쪽에 위치하며 음식물을 씹고 부수는 데 도움을 줍니다.'],5:['제2소구치','Second premolar','소구치 중 뒤쪽에 위치하고 음식물을 으깨는 역할을 합니다.'],6:['제1대구치','First molar','넓은 교합면을 이용해 음식물을 갈고 부수는 저작 기능을 담당합니다.'],7:['제2대구치','Second molar','제1대구치 뒤쪽에 있으며 넓은 교합면으로 저작을 돕습니다.'],8:['제3대구치 (사랑니)','Third molar','가장 뒤쪽에 위치하는 대구치로, 형태와 맹출 여부에 개인차가 큽니다.']};
@@ -50,7 +54,7 @@ el('editExport').onclick=()=>{const blob=new Blob([JSON.stringify({version:16,ch
 el('editImport').onclick=()=>el('editImportFile').click();el('editImportFile').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;try{const d=JSON.parse(await f.text());if(!d.changes||typeof d.changes!=='object'||Array.isArray(d.changes))throw Error('bad format');overrides=d.changes;saveOverrides();if(selected){editLoad(selected);setSelected(selected)}el('editFeedback').textContent='JSON 불러오기 완료'}catch(e){el('editFeedback').textContent='JSON 형식을 확인해 주세요.'}e.target.value=''};
 
 function rootName(obj){let p=obj;while(p&&p!==model){if(p.userData.toothRoot)return p;p=p.parent}return null}
-function chooseRoot(obj){const box=boxOf(obj);if(box.isEmpty())return;obj.userData.toothRoot=true;roots.push(obj);obj.traverse(m=>{if(m.isMesh){selectable.push(m);m.material=m.material.clone();if(m.material.color){m.material.color.multiplyScalar(0.80);}m.userData.originalMaterial=m.material;}})}
+function chooseRoot(obj){const box=boxOf(obj);if(box.isEmpty())return;obj.userData.toothRoot=true;roots.push(obj);obj.traverse(m=>{if(m.isMesh){selectable.push(m);m.material=m.material.clone();if(m.material.color){m.material.color.multiplyScalar(0.80);}m.material.transparent=true;m.material.opacity=0.5;m.material.depthWrite=false;m.material.side=THREE.DoubleSide;m.userData.originalMaterial=m.material;}})}
 function describe(r){
 const custom=overrides[objectKey(r)]||{};const fdi=custom.fdi!==undefined?(custom.fdi||null):(r.userData.fdi||null);
 if(!fdi)return {name:custom.title||'치아 번호 확인 필요',en:'Tooth identification pending',description:'이 객체는 현재 모델에서 치아 번호를 확정할 수 없습니다.',arch:'미확인',index:null,fdi:null,universal:null};
@@ -86,9 +90,54 @@ const annotatedReady={'23':false,'36':false};
 const annotatedFailed={'23':false,'36':false};
 const surfaceAnchors={'23':[],'36':[]};
 let activeTooth=null,pendingTooth=null;
+
+const transparencySlider=el('opacitySlider'),transparencyLabel=el('opacityLabel');
+let currentTransparency=0.50;
+function applyGlobalTransparency(){
+  currentTransparency=Number(transparencySlider.value)/100;
+  transparencyLabel.textContent=Math.round(currentTransparency*100)+'%';
+  const opacity=1-currentTransparency;
+  for(const root of roots){root.traverse(m=>{if(!m.isMesh)return;
+    for(const mat of [m.userData.originalMaterial,m.material]){
+      if(!mat)continue;
+      const arr=Array.isArray(mat)?mat:[mat];
+      for(const item of arr){item.transparent=opacity<1;item.opacity=opacity;item.depthWrite=opacity>=1;item.needsUpdate=true;}
+    }
+  });}
+  for(const [number,obj] of Object.entries(annotatedModels)){if(!obj)continue;
+    obj.traverse(m=>{if(!m.isMesh)return;
+      for(const mat of (Array.isArray(m.material)?m.material:[m.material])){
+        if(!mat)continue;
+        const isBase=/crown_default/i.test(mat.name||'');
+        mat.transparent=opacity<1;
+        mat.opacity=isBase?Math.min(1,opacity*0.44):Math.min(1,opacity*1.1);
+        mat.depthWrite=opacity>=1;
+        mat.needsUpdate=true;
+      }
+    });
+  }
+}
+transparencySlider.addEventListener('input',applyGlobalTransparency);
+
 function loadAnnotatedTooth(number){
- new GLTFLoader().load('./tooth_'+number+'_annotated.glb',g=>{
-  const obj=g.scene; annotatedModels[number]=obj;scene.add(obj);obj.visible=false;annotatedReady[number]=true;
+ new GLTFLoader().load(number==='36'?'./tooth_36_transparent_v2.glb':'./tooth_'+number+'_annotated.glb',g=>{
+  const obj=g.scene;
+  // Explicitly honor transparency in the browser. The original crown material was opaque,
+  // hiding translucent surface materials behind it.
+  if(number==='36'||number==='23')obj.traverse(mesh=>{
+    if(!mesh.isMesh)return;
+    const mats=Array.isArray(mesh.material)?mesh.material:[mesh.material];
+    for(const mat of mats){if(!mat)return;
+      const isBase=/crown_default/i.test(mat.name||'');
+      mat.transparent=true;
+      mat.opacity=isBase?0.22:0.55;
+      mat.depthWrite=false;
+      mat.side=THREE.DoubleSide;
+      mat.needsUpdate=true;
+    }
+    mesh.renderOrder=/crown_default/i.test(mats[0]?.name||'')?0:1;
+  });
+  annotatedModels[number]=obj;scene.add(obj);obj.visible=false;annotatedReady[number]=true;applyGlobalTransparency();
   obj.updateMatrixWorld(true);
   obj.traverse(mesh=>{if(!mesh.isMesh)return;
    const mats=Array.isArray(mesh.material)?mesh.material:[mesh.material];
@@ -170,7 +219,7 @@ el('preview36Btn').onclick=()=>{
 };
 el('allBtn').onclick=showAll;el('focusBtn').onclick=showIsolated;el('resetBtn').onclick=()=>{if(activeTooth&&annotatedModels[activeTooth]?.visible)frame(annotatedModels[activeTooth]);else if(selected&&isolated)frame(selected);else if(model)frame(model)};
 const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();let down=null;renderer.domElement.addEventListener('pointerdown',e=>{down=[e.clientX,e.clientY]});renderer.domElement.addEventListener('pointerup',e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>6)return;const rect=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);raycaster.setFromCamera(pointer,camera);const hit=raycaster.intersectObjects(selectable.filter(x=>x.visible&&x.parent?.visible),false).find(h=>rootName(h.object)?.visible);if(hit){setSelected(rootName(hit.object));status.textContent='치아 선택됨 · 드래그해서 자유롭게 관찰하세요'}});
-new GLTFLoader().load('./teeth_model.glb',gltf=>{model=gltf.scene;scene.add(model);model.updateMatrixWorld(true);
+new GLTFLoader().load('./teeth_model_transparent.glb',gltf=>{model=gltf.scene;scene.add(model);model.updateMatrixWorld(true);
 // V8 방식: GLB의 원래 계층구조를 그대로 두고 부모 객체를 선택 대상으로 등록합니다.
 const byName=new Map();model.traverse(n=>byName.set(n.name,n));
 const upper=byName.get('group2'),lower=byName.get('Mandible_group1');
@@ -182,7 +231,7 @@ for(const g of [upper,lower])if(g)for(const child of g.children){
   if(meshes.length>1){for(const mesh of meshes)chooseRoot(mesh)}
   else chooseRoot(child);
 }
-if(!roots.length)model.traverse(o=>{if(o.isMesh)chooseRoot(o)});
+if(!roots.length)model.traverse(o=>{if(o.isMesh)chooseRoot(o)});applyGlobalTransparency();
 // 치아 번호는 원본 이름으로 구분 가능한 경우에만 부여합니다. 치아 객체는 절대 옮기지 않습니다.
 const meshToFDI={
 'polySurface2':'11','polySurface4':'12','polySurface6':'13','ZBrushPolyMesh3D8':'14','ZBrushPolyMesh3D9':'15','polySurface8':'16','polySurface10':'17','polySurface12':'18',
@@ -200,7 +249,7 @@ for(const root of roots){
   if(ids.size===1){root.userData.fdi=[...ids][0];numbered++}
 }
 const box=boxOf(model);box.getCenter(baseCenter);baseSize=box.getSize(new THREE.Vector3()).length();camera.position.copy(baseCenter).add(new THREE.Vector3(baseSize*.7,baseSize*.45,baseSize*.95));frame(model);loadAnnotatedTooth('23');loadAnnotatedTooth('36');
-status.textContent=`V8 기반 개별 치아 선택 · 선택 가능한 객체 ${roots.length}개 · 번호 연결 ${numbered}개`;
+status.textContent=`반투명 전체 치열 · 치아 ${roots.length}개 선택 가능 · 번호 연결 ${numbered}개`;
 },undefined,e=>{status.textContent='모델 로딩 실패: 로컬 서버 실행 여부 및 인터넷 연결을 확인하세요.';console.error(e)});
 function resize(){const w=viewer.clientWidth,h=viewer.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();trackballControls.handleResize()}new ResizeObserver(resize).observe(viewer);resize();function animate(){requestAnimationFrame(animate);controls.update();updateSurfacePins();renderer.render(scene,camera)}animate();
 </script></body></html>
