@@ -32,7 +32,7 @@ body,button{font-family:'Paperlogy','Malgun Gothic',sans-serif;font-weight:400}
 .opacity-settings{position:absolute;left:18px;bottom:86px;z-index:5;padding:11px 14px;border:1px solid #d5e2eb;border-radius:12px;background:rgba(255,255,255,.92);display:flex;align-items:center;gap:12px;box-shadow:0 3px 12px #20364a12;font-size:13px;color:#234357}
 .opacity-settings label{font-weight:600;white-space:nowrap}.opacity-settings input{width:155px;accent-color:#1686b5;cursor:pointer}.opacity-settings output{font-variant-numeric:tabular-nums;min-width:37px;font-weight:600}
 @media(max-width:800px){.opacity-settings{left:12px;bottom:108px;padding:7px 10px;font-size:11px}.opacity-settings input{width:100px}}
-.cloud-admin{border:1px solid #cbdde9;background:#f5faff;padding:12px;border-radius:10px;margin-bottom:12px}.cloud-heading{font-weight:800;color:#195b7a}.cloud-login input{margin-top:7px}.quick-pick{margin:15px 0;padding:13px;border:1px solid #cbdde9;background:#f1f7fb;border-radius:11px}.quick-pick label{display:block;color:#36566d;font-size:13px;margin-bottom:8px}.quick-pick select{width:100%;padding:10px;border:1px solid #b7d1e3;border-radius:8px;color:#203c51;background:white;font-size:15px;font-family:inherit}.quick-pick small{display:block;margin-top:7px;color:#607b8d;font-size:12px;line-height:1.5}</style><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script></head><body><header class="top"><div class="brand">🦷 Dental <em>Anatomy</em> Lab <span class="version">V31 · 직접 클릭/공용 저장 65:35</span></div><div class="tiny">영구치열 · 인터랙티브 3D 학습</div></header><main class="layout"><section class="viewer" id="viewer"><div class="vtop"><div class="eyebrow">INTERACTIVE DENTAL ATLAS</div><div class="vtitle" id="sceneTitle">전체 영구치열</div><div class="hint">드래그: 자유 회전 · 휠: 확대/축소 · 치아 클릭: 상세보기</div></div><div class="surface-annotation" id="surfaceAnnotation"><svg id="surfaceLines"></svg><div id="surfacePins"></div></div><div class="surface-guide" id="surfaceGuide">치아를 자유롭게 360° 회전하고, 면 이름을 클릭하면 설명이 나와요.</div><div class="status" id="status">전체 32개 표면 학습 모델 준비 중…</div><div class="opacity-settings" id="opacitySettings"><label for="opacitySlider">치아 투명도</label><input id="opacitySlider" type="range" min="0" max="90" step="5" value="0" aria-label="치아 투명도"><output for="opacitySlider" id="opacityLabel">0%</output></div><div class="toolbar"><button class="btn primary" id="allBtn">↶ 전체 치열 보기</button><button class="btn" id="focusBtn">◎ 선택 치아만 보기</button><button class="btn" id="resetBtn">⟲ 보기 초기화</button></div></section><aside class="side"><span class="pill" id="toothLabel">3D TOOTH EXPLORER</span><div class="name" id="toothName">치아를 선택해 보세요</div><div class="english" id="toothEnglish">Select a tooth to explore</div><div class="quick-pick"><label for="quickFDI"><strong>번호로 치아 선택 (클릭도 가능)</strong></label><select id="quickFDI" aria-label="FDI 번호로 치아 선택"><option value="">FDI 번호 선택 (11~48)</option></select><small>번호를 선택하면 해당 치아가 강조됩니다. 아래 「선택 치아만 보기」를 누르면 표면 학습으로 이동해요.</small></div><div class="fdi-display"><div class="fdi-card"><small>FDI 치아 번호</small><strong id="fdiNumber">—</strong></div><div class="fdi-card"><small>1~32 번호</small><strong id="universalNumber">—</strong></div></div><div class="fdi-help">FDI: 상악 우측 1번대 · 상악 좌측 2번대 · 하악 좌측 3번대 · 하악 우측 4번대</div><div class="section"><h3>치아 설명</h3><div class="description" id="description">왼쪽의 실제 3D 치열 모델에서 원하는 치아를 클릭하세요. 선택한 치아를 강조하고 개별 확대해서 관찰할 수 있습니다.</div><div class="metrics"><div class="metric"><small>위치</small><strong id="jaw">—</strong></div></div></div><div class="section" id="deepSection" style="display:none"><h3>형태학적 핵심 특징</h3><div id="deepFeatures" class="feature-list"></div><div class="source" id="sourceRef"></div></div><div class="section"><h3>치아 표면 학습</h3><div class="tabs" id="tabs"></div><div class="description" id="surfaceInfo" style="margin-top:12px">치아를 선택하면 표면 용어를 학습할 수 있습니다.</div></div><div class="editor"><button class="edit-toggle" id="editToggle" type="button">✎ 치아 번호·설명 직접 편집하기</button><div class="edit-panel" id="editPanel"><div class="edit-note">번호 없는 치아도 직접 클릭해 FDI 번호를 지정할 수 있습니다. 아래 관리자 로그인 후 저장하면 다른 컴퓨터에도 자동 반영됩니다.</div><div class="cloud-admin" id="cloudAdmin"><div class="cloud-heading">공용 저장 · 관리자</div><div id="cloudState" class="edit-note">공용 저장 연결 상태 확인 중…</div><div class="cloud-login" id="cloudLogin"><input id="adminEmail" class="edit-input" type="email" autocomplete="username" placeholder="관리자 이메일"><input id="adminPassword" class="edit-input" type="password" autocomplete="current-password" placeholder="관리자 비밀번호"><div class="edit-actions"><button class="btn" id="adminSignIn" type="button">관리자 로그인</button><button class="btn" id="adminSignOut" type="button" style="display:none">로그아웃</button></div></div></div><div class="edit-key" id="editObjectName">치아를 선택하면 원본 객체명이 표시됩니다.</div><label class="edit-label" for="editFDI">FDI 번호 (11~48)</label><select class="edit-input" id="editFDI"><option value="">미지정</option></select><label class="edit-label" for="editTitle">치아 이름 (선택)</label><input class="edit-input" id="editTitle" placeholder="예: 상악 좌측 제1대구치"><label class="edit-label" for="editEnglish">영어 이름 (선택)</label><input class="edit-input" id="editEnglish" placeholder="Maxillary first molar"><label class="edit-label" for="editSummary">치아 설명 (선택)</label><textarea class="edit-input" id="editSummary" rows="4" placeholder="치아 형태 및 기능"></textarea><label class="edit-label" for="editFeatures">핵심 특징 (한 줄에 하나)</label><textarea class="edit-input" id="editFeatures" rows="4"></textarea><div class="edit-actions"><button class="btn primary" type="button" id="editSave">이 치아 저장</button><button class="btn" type="button" id="editRemove">수정 삭제</button></div><div class="edit-actions"><button class="btn primary" type="button" id="editExport">공용 설정 다운로드</button><button class="btn" type="button" id="editImport">JSON 불러오기</button><input type="file" id="editImportFile" accept=".json,application/json" hidden></div><div class="edit-note" id="editFeedback">관리자 로그인 후 저장하면 모든 방문자에게 공용 반영됩니다. 클라우드 미설정 시 JSON 내보내기를 이용하세요.</div></div></div><div class="foot">※ 32개 GLB를 전체 치열의 메시 면 수 및 경계 좌표와 비교해 각 FDI 번호를 연결했습니다. 공용 설정(teeth_config.json)의 FDI 번호가 모든 방문자에게 적용됩니다. 관리자 클라우드 연결 시 저장 버튼으로 공용 반영되며, 미연결 시 JSON을 GitHub에 업로드해야 공개 반영됩니다. 표면 명칭은 교육용 일반 설명이며, 치아별 표면 해부학의 세부 차이는 후속 검증이 필요합니다.</div></aside></main><script type="module">
+.cloud-admin{border:1px solid #cbdde9;background:#f5faff;padding:12px;border-radius:10px;margin-bottom:12px}.cloud-heading{font-weight:800;color:#195b7a}.cloud-login input{margin-top:7px}.quick-pick{margin:15px 0;padding:13px;border:1px solid #cbdde9;background:#f1f7fb;border-radius:11px}.quick-pick label{display:block;color:#36566d;font-size:13px;margin-bottom:8px}.quick-pick select{width:100%;padding:10px;border:1px solid #b7d1e3;border-radius:8px;color:#203c51;background:white;font-size:15px;font-family:inherit}.quick-pick small{display:block;margin-top:7px;color:#607b8d;font-size:12px;line-height:1.5}</style><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script></head><body><header class="top"><div class="brand">🦷 Dental <em>Anatomy</em> Lab <span class="version">V32 · 간편 PIN 편집 65:35</span></div><div class="tiny">영구치열 · 인터랙티브 3D 학습</div></header><main class="layout"><section class="viewer" id="viewer"><div class="vtop"><div class="eyebrow">INTERACTIVE DENTAL ATLAS</div><div class="vtitle" id="sceneTitle">전체 영구치열</div><div class="hint">드래그: 자유 회전 · 휠: 확대/축소 · 치아 클릭: 상세보기</div></div><div class="surface-annotation" id="surfaceAnnotation"><svg id="surfaceLines"></svg><div id="surfacePins"></div></div><div class="surface-guide" id="surfaceGuide">치아를 자유롭게 360° 회전하고, 면 이름을 클릭하면 설명이 나와요.</div><div class="status" id="status">전체 32개 표면 학습 모델 준비 중…</div><div class="opacity-settings" id="opacitySettings"><label for="opacitySlider">치아 투명도</label><input id="opacitySlider" type="range" min="0" max="90" step="5" value="0" aria-label="치아 투명도"><output for="opacitySlider" id="opacityLabel">0%</output></div><div class="toolbar"><button class="btn primary" id="allBtn">↶ 전체 치열 보기</button><button class="btn" id="focusBtn">◎ 선택 치아만 보기</button><button class="btn" id="resetBtn">⟲ 보기 초기화</button></div></section><aside class="side"><span class="pill" id="toothLabel">3D TOOTH EXPLORER</span><div class="name" id="toothName">치아를 선택해 보세요</div><div class="english" id="toothEnglish">Select a tooth to explore</div><div class="quick-pick"><label for="quickFDI"><strong>번호로 치아 선택 (클릭도 가능)</strong></label><select id="quickFDI" aria-label="FDI 번호로 치아 선택"><option value="">FDI 번호 선택 (11~48)</option></select><small>번호를 선택하면 해당 치아가 강조됩니다. 아래 「선택 치아만 보기」를 누르면 표면 학습으로 이동해요.</small></div><div class="fdi-display"><div class="fdi-card"><small>FDI 치아 번호</small><strong id="fdiNumber">—</strong></div><div class="fdi-card"><small>1~32 번호</small><strong id="universalNumber">—</strong></div></div><div class="fdi-help">FDI: 상악 우측 1번대 · 상악 좌측 2번대 · 하악 좌측 3번대 · 하악 우측 4번대</div><div class="section"><h3>치아 설명</h3><div class="description" id="description">왼쪽의 실제 3D 치열 모델에서 원하는 치아를 클릭하세요. 선택한 치아를 강조하고 개별 확대해서 관찰할 수 있습니다.</div><div class="metrics"><div class="metric"><small>위치</small><strong id="jaw">—</strong></div></div></div><div class="section" id="deepSection" style="display:none"><h3>형태학적 핵심 특징</h3><div id="deepFeatures" class="feature-list"></div><div class="source" id="sourceRef"></div></div><div class="section"><h3>치아 표면 학습</h3><div class="tabs" id="tabs"></div><div class="description" id="surfaceInfo" style="margin-top:12px">치아를 선택하면 표면 용어를 학습할 수 있습니다.</div></div><div class="editor"><button class="edit-toggle" id="editToggle" type="button">✎ 치아 번호·설명 직접 편집하기</button><div class="edit-panel" id="editPanel"><div class="edit-note">번호 없는 치아도 클릭해 FDI 번호를 지정할 수 있습니다. 편집을 열려면 아래 PIN 1234를 입력하세요. 변경사항을 모두에게 공개하려면 설정 JSON을 GitHub에 업로드해야 합니다.</div><div class="cloud-admin" id="cloudAdmin"><div class="cloud-heading">편집 잠금 해제 · 간편 PIN</div><div id="cloudState" class="edit-note">편집하려면 PIN 1234를 입력하세요. (보안 인증이 아닌 간편 잠금입니다)</div><div class="cloud-login" id="cloudLogin"><input id="adminPassword" class="edit-input" type="password" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="비밀번호 1234"><div class="edit-actions"><button class="btn" id="adminSignIn" type="button">편집 잠금 해제</button><button class="btn" id="adminSignOut" type="button" style="display:none">편집 잠금</button></div></div></div><div class="edit-key" id="editObjectName">치아를 선택하면 원본 객체명이 표시됩니다.</div><label class="edit-label" for="editFDI">FDI 번호 (11~48)</label><select class="edit-input" id="editFDI"><option value="">미지정</option></select><label class="edit-label" for="editTitle">치아 이름 (선택)</label><input class="edit-input" id="editTitle" placeholder="예: 상악 좌측 제1대구치"><label class="edit-label" for="editEnglish">영어 이름 (선택)</label><input class="edit-input" id="editEnglish" placeholder="Maxillary first molar"><label class="edit-label" for="editSummary">치아 설명 (선택)</label><textarea class="edit-input" id="editSummary" rows="4" placeholder="치아 형태 및 기능"></textarea><label class="edit-label" for="editFeatures">핵심 특징 (한 줄에 하나)</label><textarea class="edit-input" id="editFeatures" rows="4"></textarea><div class="edit-actions"><button class="btn primary" type="button" id="editSave">이 치아 저장</button><button class="btn" type="button" id="editRemove">수정 삭제</button></div><div class="edit-actions"><button class="btn primary" type="button" id="editExport">공용 설정 다운로드</button><button class="btn" type="button" id="editImport">JSON 불러오기</button><input type="file" id="editImportFile" accept=".json,application/json" hidden></div><div class="edit-note" id="editFeedback">변경사항은 이 브라우저에 먼저 저장됩니다. 모든 방문자에게 적용하려면 공용 설정 다운로드 후 teeth_config.json을 GitHub에 업로드하세요.</div></div></div><div class="foot">※ 32개 GLB를 전체 치열의 메시 면 수 및 경계 좌표와 비교해 각 FDI 번호를 연결했습니다. 공용 설정(teeth_config.json)의 FDI 번호가 모든 방문자에게 적용됩니다. PIN 1234는 편집 잠금 해제용이며 공용 서버 인증이 아닙니다. 수정한 번호·설명을 모든 방문자에게 반영하려면 JSON 파일을 GitHub에 업로드해야 합니다. 표면 명칭은 교육용 일반 설명이며, 치아별 표면 해부학의 세부 차이는 후속 검증이 필요합니다.</div></aside></main><script type="module">
 import * as THREE from 'three';import {OrbitControls} from 'three/addons/controls/OrbitControls.js';import {TrackballControls} from 'three/addons/controls/TrackballControls.js';import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 const viewer=document.getElementById('viewer'),status=document.getElementById('status'),el=id=>document.getElementById(id),scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(43,1,.01,10000);const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputColorSpace=THREE.SRGBColorSpace;viewer.prepend(renderer.domElement);const orbitControls=new OrbitControls(camera,renderer.domElement);orbitControls.enableDamping=true;orbitControls.dampingFactor=.08;orbitControls.minDistance=.01;orbitControls.enabled=false;const trackballControls=new TrackballControls(camera,renderer.domElement);trackballControls.rotateSpeed=4.0;trackballControls.zoomSpeed=1.25;trackballControls.panSpeed=0.65;trackballControls.staticMoving=true;trackballControls.dynamicDampingFactor=0.12;trackballControls.enabled=true;let controls=trackballControls;scene.add(new THREE.HemisphereLight(0xffffff,0x9db7c8,2.5));const key=new THREE.DirectionalLight(0xffffff,2.7);key.position.set(5,9,12);scene.add(key);const fill=new THREE.DirectionalLight(0xa7d8fb,1.5);fill.position.set(-8,-2,-7);scene.add(fill);let model,roots=[],selected=null,isolated=false,baseCenter=new THREE.Vector3(),baseSize=1;const selectable=[];const boxOf=o=>new THREE.Box3().setFromObject(o);function frame(target){const b=boxOf(target),size=b.getSize(new THREE.Vector3()),center=b.getCenter(new THREE.Vector3());if(b.isEmpty())return;const max=Math.max(size.x,size.y,size.z,.01);const dir=camera.position.clone().sub(controls.target).normalize();if(dir.length()<.1)dir.set(1,.7,1).normalize();const distance=max/(2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2)))*1.8;controls.target.copy(center);camera.position.copy(center).addScaledVector(dir,distance);camera.near=Math.max(.001,distance/1000);camera.far=Math.max(1000,distance*100);camera.updateProjectionMatrix();controls.update()}
 const toothTypes={1:['중절치','Central incisor','치열의 가장 앞쪽에 있으며 음식물을 자르는 역할을 합니다.'],2:['측절치','Lateral incisor','중절치 옆에 위치하며 음식물을 잘라내는 기능을 돕습니다.'],3:['견치','Canine','뾰족한 교두와 비교적 긴 치근이 특징이며 음식물을 찢는 데 도움을 줍니다.'],4:['제1소구치','First premolar','견치 뒤쪽에 위치하며 음식물을 씹고 부수는 데 도움을 줍니다.'],5:['제2소구치','Second premolar','소구치 중 뒤쪽에 위치하고 음식물을 으깨는 역할을 합니다.'],6:['제1대구치','First molar','넓은 교합면을 이용해 음식물을 갈고 부수는 저작 기능을 담당합니다.'],7:['제2대구치','Second molar','제1대구치 뒤쪽에 있으며 넓은 교합면으로 저작을 돕습니다.'],8:['제3대구치 (사랑니)','Third molar','가장 뒤쪽에 위치하는 대구치로, 형태와 맹출 여부에 개인차가 큽니다.']};
@@ -44,26 +44,10 @@ const editStorageKey='dental-v30-edit-map';let overrides={};let publicMeshFDI={}
 // 배포자가 GitHub에 올린 공용 설정을 우선 로드합니다.
 let publicConfig={version:30,meshFDI:{},changes:{}};
 try{const response=await fetch('./teeth_config.json',{cache:'no-store'});if(response.ok){const cfg=await response.json();if(cfg&&cfg.meshFDI&&typeof cfg.meshFDI==='object'&&!Array.isArray(cfg.meshFDI)){publicConfig=cfg;publicMeshFDI={...cfg.meshFDI};overrides={...(cfg.changes||{})}}}}catch(e){console.warn('공용 설정을 읽지 못해 기본값을 사용합니다',e)}
-// Supabase 공개 읽기 / 관리자만 쓰기. URL과 anon key는 공개 가능한 프로젝트 설정이며,
-// 관리자 비밀번호와 access token은 파일이나 localStorage에 저장하지 않습니다.
-let cloudSettings=null,adminToken=null,cloudAvailable=false;
-try{
- const resp=await fetch('./cloud_config.json',{cache:'no-store'});
- const cfg=resp.ok?await resp.json():null;
- if(cfg?.supabaseUrl&&cfg?.anonKey){
-  cloudSettings={url:cfg.supabaseUrl.replace(/\/$/,''),anonKey:cfg.anonKey};
-  const r=await fetch(cloudSettings.url+'/rest/v1/site_settings?id=eq.dental&select=config',{
-   headers:{apikey:cloudSettings.anonKey,Authorization:'Bearer '+cloudSettings.anonKey},cache:'no-store'
-  });
-  if(!r.ok)throw Error('공용 설정 읽기 실패 HTTP '+r.status);
-  const rows=await r.json();
-  if(!rows.length||!rows[0].config)throw Error('사이트 설정 테이블 초기화가 필요합니다');
-  const data=rows[0].config;
-  if(data.meshFDI&&typeof data.meshFDI==='object')publicMeshFDI={...publicMeshFDI,...data.meshFDI};
-  if(data.changes&&typeof data.changes==='object')overrides={...overrides,...data.changes};
-  cloudAvailable=true;
- }
-}catch(e){console.warn('공용 DB 연결 상태:',e)}
+// 별도 로그인 서비스 없는 간편 PIN. 공개된 사이트의 PIN은 누구나 소스에서 확인할 수 있습니다.
+// 이는 편집 UI 잠금일 뿐 보안 인증 수단이나 서버 저장 기능이 아닙니다.
+let editorUnlocked=false;
+try{const local=JSON.parse(localStorage.getItem(editStorageKey)||'{}');if(local&&typeof local==='object'&&!Array.isArray(local))overrides={...overrides,...local};}catch(e){}
 // 이전 버전 브라우저 저장값이 공용 배포 설정을 가리지 않도록 초기 자동 병합을 중단합니다.
 
 const editFields={fdi:el('editFDI'),title:el('editTitle'),english:el('editEnglish'),summary:el('editSummary'),features:el('editFeatures')};
@@ -80,69 +64,49 @@ function buildSharedConfig(){
   const {fdi,...rest}=v;
   if(Object.values(rest).some(x=>Array.isArray(x)?x.length:!!x))changes[k]=rest;
  }
- return {version:31,meshFDI,changes};
+ return {version:32,meshFDI,changes};
 }
-async function publishCloud(){
- if(!cloudAvailable||!adminToken)throw Error('공용 저장을 이용하려면 관리자 로그인이 필요합니다.');
- const config=buildSharedConfig();
- const response=await fetch(cloudSettings.url+'/rest/v1/site_settings?id=eq.dental',{
-  method:'PATCH',headers:{apikey:cloudSettings.anonKey,Authorization:'Bearer '+adminToken,'Content-Type':'application/json',Prefer:'return=representation'},
-  body:JSON.stringify({config})
- });
- if(!response.ok)throw Error('공용 저장 실패 HTTP '+response.status+' (관리자 권한/RLS 확인)');
- const items=await response.json();if(!items.length)throw Error('공용 저장 권한이 없거나 설정 행을 찾지 못했습니다.');
- publicMeshFDI={...config.meshFDI};publicConfig=config;overrides={...config.changes};
- // 저장한 뒤에도 선택한 치아의 화면은 그대로 갱신되므로 원래 편집 메타데이터를 다시 합칩니다.
- return true;
+function setEditorLock(unlocked){
+ editorUnlocked=unlocked;
+ for(const id of ['editFDI','editTitle','editEnglish','editSummary','editFeatures','editSave','editRemove','editExport','editImport'])el(id).disabled=!unlocked;
+ el('adminSignIn').style.display=unlocked?'none':'';
+ el('adminSignOut').style.display=unlocked?'':'none';
+ el('cloudState').textContent=unlocked?'편집 잠금 해제됨 · 저장은 이 브라우저에만 적용됩니다. 다른 사람에게 공개하려면 JSON을 GitHub에 업로드하세요.':'비밀번호 1234를 입력하면 편집할 수 있습니다. 로그인 계정이나 별도 가입은 필요 없습니다.';
 }
-function setCloudStatus(message){el('cloudState').textContent=message;}
-if(cloudAvailable){setCloudStatus('공용 데이터 연결됨 · 번호와 설명을 수정하려면 관리자 로그인');}
-else{setCloudStatus('공용 저장 미연결 · cloud_config.json / Supabase 설정 필요. 현재는 JSON 다운로드 → GitHub 업로드로 공개할 수 있습니다.');el('adminSignIn').disabled=true;}
-el('adminSignIn').onclick=async()=>{
- const email=el('adminEmail').value.trim(),password=el('adminPassword').value;
- if(!email||!password){setCloudStatus('이메일과 비밀번호를 입력하세요.');return;}
- try{
-  const response=await fetch(cloudSettings.url+'/auth/v1/token?grant_type=password',{
-   method:'POST',headers:{apikey:cloudSettings.anonKey,'Content-Type':'application/json'},body:JSON.stringify({email,password})
-  });const data=await response.json();if(!response.ok||!data.access_token)throw Error(data.msg||data.error_description||'로그인 실패');
-  adminToken=data.access_token;el('adminPassword').value='';el('adminSignIn').style.display='none';el('adminSignOut').style.display='';
-  setCloudStatus('관리자 로그인 완료 · 「이 치아 저장」을 누르면 즉시 공용 반영됩니다.');
- }catch(e){setCloudStatus('로그인 오류: '+e.message)}
+setEditorLock(false);
+el('adminSignIn').onclick=()=>{
+ if(el('adminPassword').value==='1234'){
+  el('adminPassword').value='';setEditorLock(true);
+ }else{el('cloudState').textContent='비밀번호가 맞지 않습니다.';}
 };
-el('adminSignOut').onclick=()=>{adminToken=null;el('adminSignIn').style.display='';el('adminSignOut').style.display='none';setCloudStatus('로그아웃했습니다.')};
+el('adminPassword').addEventListener('keydown',e=>{if(e.key==='Enter')el('adminSignIn').click()});
+el('adminSignOut').onclick=()=>setEditorLock(false);
 el('editToggle').onclick=()=>el('editPanel').classList.toggle('open');
 el('editSave').onclick=async()=>{
+ if(!editorUnlocked){el('editFeedback').textContent='먼저 PIN을 입력해 편집 잠금을 해제하세요.';return;}
  if(!selected){el('editFeedback').textContent='먼저 왼쪽에서 치아를 클릭하거나 번호로 선택하세요.';return;}
  const key=objectKey(selected),entry={fdi:editFields.fdi.value,title:editFields.title.value.trim(),english:editFields.english.value.trim(),summary:editFields.summary.value.trim(),features:editFields.features.value.split('\n').map(x=>x.trim()).filter(Boolean)};
  const previous=overrides[key];overrides[key]=entry;
  try{
   buildSharedConfig();
-  if(cloudAvailable){
-   if(!adminToken)throw Error('관리자 로그인을 해야 모든 방문자에게 저장할 수 있습니다.');
-   el('editFeedback').textContent='공용 저장 중…';
-   await publishCloud();
-   // DB는 설명만 changes에 저장, 번호는 meshFDI에 저장
-   selected.userData.fdi=entry.fdi;overrides[key]=entry;
-   el('editFeedback').textContent='공용 저장 완료! 다른 컴퓨터에서 새로고침하면 같은 번호와 설명이 표시됩니다.';
-  }else{
-   if(!saveOverrides())throw Error('로컬 저장 실패');
-   el('editFeedback').textContent='이 컴퓨터에 저장됨. 다른 컴퓨터에도 적용하려면 「공용 설정 다운로드」 후 GitHub에 올려야 합니다.';
-  }
+  if(!saveOverrides())throw Error('로컬 저장 실패');
+  selected.userData.fdi=entry.fdi;
+  el('editFeedback').textContent='이 브라우저에 저장했어요. 다른 컴퓨터에도 적용하려면 「공용 설정 다운로드」 후 teeth_config.json을 GitHub에 업로드하세요.';
   setSelected(selected);
  }catch(e){if(previous===undefined)delete overrides[key];else overrides[key]=previous;el('editFeedback').textContent=e.message;}
 };
-el('editRemove').onclick=()=>{if(!selected)return;delete overrides[objectKey(selected)];saveOverrides();editLoad(selected);setSelected(selected);el('editFeedback').textContent='이 치아의 수정사항을 삭제했습니다.'};
-el('editExport').onclick=()=>{
+el('editRemove').onclick=()=>{if(!editorUnlocked||!selected)return;delete overrides[objectKey(selected)];saveOverrides();editLoad(selected);setSelected(selected);el('editFeedback').textContent='이 치아의 수정사항을 삭제했습니다.'};
+el('editExport').onclick=()=>{if(!editorUnlocked)return;
  const meshFDI={...publicMeshFDI};
  for(const r of roots){const item=overrides[objectKey(r)];meshFDI[r.name]=item?.fdi!==undefined?item.fdi:r.userData.fdi||'';}
  const ids=Object.values(meshFDI).filter(Boolean);const duplicated=[...new Set(ids.filter((v,i)=>ids.indexOf(v)!==i))];
  if(duplicated.length){el('editFeedback').textContent='FDI 번호 중복: '+duplicated.join(', ')+' · 수정한 뒤 다시 다운로드하세요.';return;}
  const changes={};for(const [k,v] of Object.entries(overrides)){const {fdi,...rest}=v;if(Object.values(rest).some(x=>Array.isArray(x)?x.length:!!x))changes[k]=rest;}
- const blob=new Blob([JSON.stringify({version:31,meshFDI,changes},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='teeth_config.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+ const blob=new Blob([JSON.stringify({version:32,meshFDI,changes},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='teeth_config.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
  el('editFeedback').textContent='teeth_config.json 다운로드 완료 · GitHub 저장소 최상위 파일을 교체하면 모든 방문자에게 적용됩니다.';
 };
-el('editImport').onclick=()=>el('editImportFile').click();el('editImportFile').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;try{
- const d=JSON.parse(await f.text());if(!d.changes||typeof d.changes!=='object'||Array.isArray(d.changes))throw Error('bad format');
+el('editImport').onclick=()=>{if(editorUnlocked)el('editImportFile').click()};el('editImportFile').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;try{
+ if(!editorUnlocked)throw Error('편집 잠금을 해제하세요');const d=JSON.parse(await f.text());if(!d.changes||typeof d.changes!=='object'||Array.isArray(d.changes))throw Error('bad format');
  if(d.meshFDI&&typeof d.meshFDI==='object'){publicMeshFDI={...d.meshFDI};for(const r of roots){const v=publicMeshFDI[r.name];if(v!==undefined)r.userData.fdi=v;}}
  overrides={...d.changes};saveOverrides();if(selected){editLoad(selected);setSelected(selected)}el('editFeedback').textContent='공용 설정을 불러왔습니다. 「공용 설정 다운로드」 후 GitHub에 업로드하세요.'
  }catch(e){el('editFeedback').textContent='JSON 형식을 확인해 주세요.'}e.target.value=''};
