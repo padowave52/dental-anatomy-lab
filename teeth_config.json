@@ -1,5 +1,5 @@
 {
-  "version": 31,
+  "version": 37,
   "meshFDI": {
     "polySurface2": "11",
     "polySurface4": "12",
@@ -33,6 +33,5 @@
     "ZBrushPolyMesh3D2": "46",
     "ZBrushPolyMesh3D1": "47",
     "ZBrushPolyMesh3D": "48"
-  },
-  "changes": {}
+  }
 }
