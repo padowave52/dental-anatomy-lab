@@ -1,33 +1,33 @@
-﻿FDI,source_mesh,surface_materials,faces,bounds_error
-11,polySurface2,"lingual, mesial, labial, distal",1504,4.874450840075318e-09
-12,polySurface4,"lingual, distal, labial, mesial",1470,8.945288976625376e-10
-13,polySurface6,"lingual, distal, labial, mesial",1396,5.145136220770163e-09
-14,ZBrushPolyMesh3D8,"lingual, mesial, buccal, distal, occlusal",2220,3.3772594720225814e-09
-15,ZBrushPolyMesh3D9,"occlusal, buccal, distal, lingual, mesial",1526,4.4722981453557616e-09
-16,polySurface8,"lingual, mesial, distal, buccal, occlusal",2962,5.321181484257549e-09
-17,polySurface10,"occlusal, buccal, distal, mesial, lingual",2260,1.977101600553913e-09
-18,polySurface12,"occlusal, buccal, mesial, lingual, distal",1970,2.3581464756278668e-09
-21,polySurface1,"labial, mesial, distal, lingual",1504,5.38440131949132e-09
-22,ZBrushPolyMesh3D1.001,"labial, mesial, distal, lingual",1470,5.182337576049263e-09
-23,ZBrushPolyMesh3D2.001,"lingual, distal, labial, mesial",1396,3.3547291268378437e-09
-24,ZBrushPolyMesh3D3.001,"buccal, distal, lingual, mesial, occlusal",2220,5.576672712478292e-09
-25,ZBrushPolyMesh3D4.001,"occlusal, lingual, mesial, buccal, distal",1526,4.080576173907255e-09
-26,ZBrushPolyMesh3D5.001,"lingual, distal, buccal, mesial, occlusal",2962,2.867013918703149e-09
-27,polySurface9,"lingual, distal, mesial, buccal, occlusal",2260,3.315406631651369e-09
-28,ZBrushPolyMesh3D7.001,"lingual, distal, buccal, mesial, occlusal",1970,2.5942185723974587e-09
-31,LL1seam_2:ZBrushPolyMesh3D,"lingual, buccal, distal",1556,5.721843087799104e-09
-32,LL2seam_2:ZBrushPolyMesh3D,"lingual, distal, buccal, mesial",1618,7.79664288241611e-09
-33,LL3seam_2:ZBrushPolyMesh3D,"labial, mesial, distal, lingual",1888,4.92136371623362e-09
-34,LL4seam_2:ZBrushPolyMesh3D,"occlusal, buccal, distal, lingual, mesial",2014,1.690724204455258e-09
-35,LL5seam_3:ZBrushPolyMesh3D,"labial, distal, lingual, occlusal, mesial",1590,6.0885951857799116e-09
-36,LL6seam_2:ZBrushPolyMesh3D,"buccal, mesial, distal, lingual, occlusal",2130,2.173331033996213e-09
-37,LL7seam_2:ZBrushPolyMesh3D,"buccal, mesial, lingual, distal, occlusal",2066,5.604790212965105e-09
-38,LL8seam_2:ZBrushPolyMesh3D,"occlusal, lingual, distal, buccal, mesial",1868,2.6017462748055204e-09
-41,ZBrushPolyMesh3D7,"lingual, mesial, labial, distal",1556,2.3516472254756274e-09
-42,ZBrushPolyMesh3D6,"labial, mesial, lingual, distal",1618,7.622522905180836e-09
-43,ZBrushPolyMesh3D5,"lingual, mesial, distal, labial",1888,4.691592512716349e-09
-44,ZBrushPolyMesh3D3,"occlusal, lingual, distal, buccal, mesial",2014,6.921796399842862e-09
-45,ZBrushPolyMesh3D4,"occlusal, buccal, mesial, lingual, distal",1590,3.148117988313709e-09
-46,ZBrushPolyMesh3D2,"occlusal, lingual, distal, mesial, buccal",2130,4.0162260961590665e-09
-47,ZBrushPolyMesh3D1,"lingual, occlusal, mesial, buccal, distal",2066,3.0349619884440485e-09
-48,ZBrushPolyMesh3D,"lingual, mesial, buccal, distal, occlusal",1868,2.1959846580597294e-09
+﻿FDI,original_object_name,user_provided_name,color_glb
+11,polySurface2,polySurface2,tooth_11_annotated.glb
+12,polySurface4,polySurface4,tooth_12_annotated.glb
+13,polySurface6,polySurface6,tooth_13_annotated.glb
+14,ZBrushPolyMesh3D8,ZBrushPolyMesh3D8,tooth_14_annotated.glb
+15,ZBrushPolyMesh3D9,ZBrushPolyMesh3D9,tooth_15_annotated.glb
+16,polySurface8,polySurface8,tooth_16_annotated.glb
+17,polySurface10,polySurface10,tooth_17_annotated.glb
+18,polySurface12,polySurface12,tooth_18_annotated.glb
+21,polySurface1,polySurface1,tooth_21_annotated.glb
+22,ZBrushPolyMesh3D1.001,ZBrushPolyMesh3D1001,tooth_22_annotated.glb
+23,ZBrushPolyMesh3D2.001,ZBrushPolyMesh3D2001,tooth_23_annotated.glb
+24,ZBrushPolyMesh3D3.001,ZBrushPolyMesh3D3001,tooth_24_annotated.glb
+25,ZBrushPolyMesh3D4.001,ZBrushPolyMesh3D4001,tooth_25_annotated.glb
+26,ZBrushPolyMesh3D5.001,ZBrushPolyMesh3D5001,tooth_26_annotated.glb
+27,polySurface9,polySurface9,tooth_27_annotated.glb
+28,ZBrushPolyMesh3D7.001,ZBrushPolyMesh3D7001,tooth_28_annotated.glb
+31,LL1seam_2:ZBrushPolyMesh3D,LL1seam_2ZBrushPolyMesh3D,tooth_31_annotated.glb
+32,LL2seam_2:ZBrushPolyMesh3D,LL2seam_2ZBrushPolyMesh3D,tooth_32_annotated.glb
+33,LL3seam_2:ZBrushPolyMesh3D,LL3seam_2ZBrushPolyMesh3D,tooth_33_annotated.glb
+34,LL4seam_2:ZBrushPolyMesh3D,LL4seam_2ZBrushPolyMesh3D,tooth_34_annotated.glb
+35,LL5seam_3:ZBrushPolyMesh3D,LL5seam_3ZBrushPolyMesh3D,tooth_35_annotated.glb
+36,LL6seam_2:ZBrushPolyMesh3D,LL6seam_2ZBrushPolyMesh3D,tooth_36_annotated.glb
+37,LL7seam_2:ZBrushPolyMesh3D,LL7seam_2ZBrushPolyMesh3D,tooth_37_annotated.glb
+38,LL8seam_2:ZBrushPolyMesh3D,LL8seam_2ZBrushPolyMesh3D,tooth_38_annotated.glb
+41,ZBrushPolyMesh3D7,ZBrushPolyMesh3D7,tooth_41_annotated.glb
+42,ZBrushPolyMesh3D6,ZBrushPolyMesh3D6,tooth_42_annotated.glb
+43,ZBrushPolyMesh3D5,ZBrushPolyMesh3D5,tooth_43_annotated.glb
+44,ZBrushPolyMesh3D3,ZBrushPolyMesh3D3,tooth_44_annotated.glb
+45,ZBrushPolyMesh3D4,ZBrushPolyMesh3D4,tooth_45_annotated.glb
+46,ZBrushPolyMesh3D2,ZBrushPolyMesh3D2,tooth_46_annotated.glb
+47,ZBrushPolyMesh3D1,ZBrushPolyMesh3D1,tooth_47_annotated.glb
+48,ZBrushPolyMesh3D,ZBrushPolyMesh3D,tooth_48_annotated.glb
